@@ -55,6 +55,10 @@ match ExtraWhitespace /\s\+$/
 " Always show the statusline
 set laststatus=2
 
+" Prevent the text from being wrapped automatically.
+set textwidth=0
+set wrapmargin=0
+
 " Map Ctrl-h to move to the previous buffer ":bp", and ctrol-l to move to the next buffer ":bn"
 map <C-h> :w<CR>:bp<CR>
 map <C-l> :w<CR>:bn<CR>
