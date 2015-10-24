@@ -6,8 +6,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'AutoComplPop'
 Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
@@ -55,5 +56,5 @@ match ExtraWhitespace /\s\+$/
 set laststatus=2
 
 " Map Ctrl-h to move to the previous buffer ":bp", and ctrol-l to move to the next buffer ":bn"
-map <C-h> :bp<CR>
-map <C-l> :bn<CR>
+map <C-h> :w<CR>:bp<CR>
+map <C-l> :w<CR>:bn<CR>
