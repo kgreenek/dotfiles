@@ -53,3 +53,7 @@ match ExtraWhitespace /\s\+$/
 
 " Always show the statusline
 set laststatus=2
+
+" Map Ctrl-h to move to the previous buffer ":bp", and ctrol-l to move to the next buffer ":bn"
+map <C-h> :bp<CR>
+map <C-l> :bn<CR>
