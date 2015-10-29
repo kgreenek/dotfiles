@@ -62,6 +62,6 @@ set wrapmargin=0
 " Allow backspacing over autoindent, line breaks, and the start of insert
 set backspace=indent,eol,start
 
-" Map Ctrl-h to move to the previous buffer ":bp", and ctrol-l to move to the next buffer ":bn"
+" Map ctrl-h to move to the previous buffer ":bp", and ctrl-l to move to the next buffer ":bn"
 map <C-h> :w<CR>:bp<CR>
 map <C-l> :w<CR>:bn<CR>
