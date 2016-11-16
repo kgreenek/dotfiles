@@ -15,7 +15,11 @@ filetype plugin indent on
 
 " vim-airline settings
 " Show buffers at the top if no tabs are open
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled=1
+
+" YouCompleteMe settings
+" Prevent YouCompleteMe from showing a warning every time it loads .ycm_extra_conf.py.
+let g:ycm_confirm_extra_conf=0
 
 " Tell vim where to look for tags file. It'll look in the current directory, then the parent
 " directory, and up until it hits HOME (that's what the semicolon means).
