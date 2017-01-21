@@ -29,6 +29,9 @@ set tags=./tags,tags;$HOME
 " Enable syntax highlighting
 syntax on
 
+" This is the default theme used for "dark" terminals.
+colorscheme ron
+
 " Show line numbers
 set number
 
