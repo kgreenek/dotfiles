@@ -23,6 +23,7 @@ let g:airline#extensions#tabline#enabled=1
 " Prevent YouCompleteMe from showing a warning every time it loads
 " .ycm_extra_conf.py.
 let g:ycm_confirm_extra_conf=0
+map <C-j> :YcmCompleter GoToDeclaration<CR>
 
 " vim-cpp-enhanced-highlight settings
 let g:cpp_class_scope_highlight = 1
