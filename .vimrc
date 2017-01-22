@@ -12,6 +12,7 @@ Plugin 'Valloric/YouCompleteMe'
 " Plugin 'jeaye/color_coded'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'rhysd/vim-clang-format'
 call vundle#end()
 filetype plugin indent on
 
@@ -28,6 +29,20 @@ map <C-j> :YcmCompleter GoToDeclaration<CR>
 " vim-cpp-enhanced-highlight settings
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
+
+" vim-clang-format settings
+let g:clang_format#code_style="google"
+let g:clang_format#style_options = {
+  \ "AllowShortIfStatementsOnASingleLine" : "true",
+  \ "Standard" : "C++11" }
+autocmd FileType c,cpp,objc nnoremap <C-k> :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <C-k> :ClangFormat<CR>
+
+" netrw settings (vim default file browser)
+" Default to tree-view.
+let g:netrw_liststyle=3
+" Hide banner by default (press "I" to toggle it).
+let g:netrw_banner=0
 
 " Tell vim where to look for tags file. It'll look in the current directory,
 " then the parent directory, and up until it hits HOME (that's what the
