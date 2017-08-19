@@ -8,11 +8,12 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'jeaye/color_coded'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'jeaye/color_coded'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 call vundle#end()
 filetype plugin indent on
 
@@ -34,9 +35,15 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:clang_format#code_style="google"
 let g:clang_format#style_options = {
   \ "AllowShortIfStatementsOnASingleLine" : "true",
-  \ "Standard" : "C++11" }
+  \ "DerivePointerAlignment" : "false",
+  \ "PointerAlignment" : "Right",
+  \ "Standard" : "C++11",
+  \ "ColumnLimit" : "100" }
 autocmd FileType c,cpp,objc nnoremap <C-k> :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <C-k> :ClangFormat<CR>
+
+" Use grip with vim-markdown-preview
+let vim_markdown_preview_github=1
 
 " netrw settings (vim default file browser)
 " Default to tree-view.
@@ -105,3 +112,6 @@ set hidden
 " next buffer "bn".
 map <C-h> :bp<CR>
 map <C-l> :bn<CR>
+
+" Press jj to exit edit mode to prevent having to stretch to esc.
+imap jj <Esc>
