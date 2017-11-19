@@ -8,12 +8,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'jeaye/color_coded'
-" Plugin 'rdnetto/YCM-Generator'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'rust-lang/rust.vim'
+Plugin 'vim-syntastic/syntastic'
 
 "" Add maktaba and codefmt to the runtimepath.
 "" (The latter must be installed before it can be used.)
@@ -44,6 +45,7 @@ filetype plugin indent on
 " vim-airline settings
 " Show buffers at the top if no tabs are open.
 let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
 
 " YouCompleteMe settings
 " Prevent YouCompleteMe from showing a warning every time it loads
@@ -65,6 +67,21 @@ let g:clang_format#style_options = {
   \ "ColumnLimit" : "100" }
 autocmd FileType c,cpp,objc nnoremap <C-k> :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <C-k> :ClangFormat<CR>
+
+autocmd FileType rust nnoremap <C-k> :<C-u>RustFmt<CR>
+" NOTE: RustFmtRange seems to be broken right now, so this doesn't work.
+" See: https://github.com/rust-lang/rust.vim/issues/156
+autocmd FileType rust vnoremap <C-k> :'<,'>RustFmtRange<CR>
+
+" Syntastic settings
+" NOTE: Do not set syntastic statusline flags because airline picks up
+" syntastic automatically and manages the statusline.
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_rust_checkers=["cargo"]
 
 " Use grip with vim-markdown-preview
 let vim_markdown_preview_github=1
