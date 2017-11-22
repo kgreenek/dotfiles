@@ -6,6 +6,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe'
@@ -15,32 +16,13 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vim-syntastic/syntastic'
-
-"" Add maktaba and codefmt to the runtimepath.
-"" (The latter must be installed before it can be used.)
-"Plugin 'google/vim-maktaba'
-"Plugin 'google/vim-codefmt'
-"" Also add Glaive, which is used to configure codefmt's maktaba flags. See
-"" `:help :Glaive` for usage.
-"Plugin 'google/vim-glaive'
 call vundle#end()
-
-
-" TODO: Migrate to vim-codefmt.
-"augroup autoformat_settings
-"  autocmd FileType bzl AutoFormatBuffer buildifier
-"  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-"  autocmd FileType dart AutoFormatBuffer dartfmt
-"  autocmd FileType go AutoFormatBuffer gofmt
-"  autocmd FileType gn AutoFormatBuffer gn
-"  autocmd FileType html,css,json AutoFormatBuffer js-beautify
-"  autocmd FileType java AutoFormatBuffer google-java-format
-"  autocmd FileType python AutoFormatBuffer yapf
-"  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-"augroup END
-
-
 filetype plugin indent on
+
+" Nerdtree settings
+map <C-n> :NERDTreeToggle<CR>
+" Close vim if the only window left open is nerdtree.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " vim-airline settings
 " Show buffers at the top if no tabs are open.
