@@ -13,6 +13,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'tell-k/vim-autopep8'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vim-syntastic/syntastic'
@@ -21,8 +22,6 @@ filetype plugin indent on
 
 " Nerdtree settings
 map <C-n> :NERDTreeToggle<CR>
-" Close vim if the only window left open is nerdtree.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " vim-airline settings
 " Show buffers at the top if no tabs are open.
@@ -50,19 +49,27 @@ let g:clang_format#style_options = {
 autocmd FileType c,cpp,objc nnoremap <C-k> :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <C-k> :ClangFormat<CR>
 
+" rust settings
 autocmd FileType rust nnoremap <C-k> :<C-u>RustFmt<CR>
 " NOTE: RustFmtRange seems to be broken right now, so this doesn't work.
 " See: https://github.com/rust-lang/rust.vim/issues/156
 autocmd FileType rust vnoremap <C-k> :'<,'>RustFmtRange<CR>
 
+" Autopep8 settings
+let g:autopep8_disable_show_diff=1
+let g:autopep8_max_line_length=100
+autocmd FileType python nnoremap <C-k> :<C-u>Autopep8<CR>
+autocmd FileType python vnoremap <C-k> :'<,'>Autopep8<CR>
+
 " Syntastic settings
 " NOTE: Do not set syntastic statusline flags because airline picks up
 " syntastic automatically and manages the statusline.
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = '--max-line-length=100'
 
 let g:syntastic_rust_checkers=["cargo"]
 
