@@ -22,6 +22,7 @@ filetype plugin indent on
 
 " Nerdtree settings
 map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 1
 
 " vim-airline settings
 " Show buffers at the top if no tabs are open.
@@ -31,7 +32,7 @@ let g:airline_powerline_fonts = 1
 " YouCompleteMe settings
 " Prevent YouCompleteMe from showing a warning every time it loads
 " .ycm_extra_conf.py.
-let g:ycm_confirm_extra_conf=0
+let g:ycm_confirm_extra_conf = 0
 map <C-j> :YcmCompleter GoToDeclaration<CR>
 
 " vim-cpp-enhanced-highlight settings
