@@ -1,19 +1,24 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+GTK_CONFIG_DIR=$HOME/.config/gtk-3.0
 
-echo "Installing ambience_green_on_black color scheme..."
-mkdir -p ~/.config/tilix/schemes
-cp -f $DIR/ambience_green_on_black.json $HOME/.config/tilix/schemes
+echo "Installing color schemes..."
+mkdir -p $HOME/.config/tilix/schemes
+cp -f $DIR/schemes/* $HOME/.config/tilix/schemes
 
 echo "Installing gtk.css for title color..."
-if [ -f $HOME/.config/gtk-3.0/gtk.css ]; then
-  echo "$HOME/.config/gtk-3.0/gtk.css already exists!!!"
-  echo "Copy-paste the contents of gtk.css manually"
+if [[ -f $GTK_CONFIG_DIR/gtk.css && ! -L $GTK_CONFIG_DIR/gtk.css ]]; then
+  echo "WARNING: $GTK_CONFIG_DIR/gtk.css already exists. Skipping..."
+  echo "         Copy-paste the contents of gtk.css manually to customize title bar color,"
+  echo "         or delete that file and run this script again."
 else
-  cp $DIR/gtk.css $HOME/.config/gtk-3.0
+  if [[ -L $GTK_CONFIG_DIR/gtk.css ]]; then
+    echo "INFO: Over-writing existing symlink $GTK_CONFIG_DIR/gtk.css"
+  fi
+  ln -sf $DIR/gtk.css $GTK_CONFIG_DIR/gtk.css
 fi
 
 echo "Installing dconf config..."
 dconf load /com/gexperts/Tilix/ < $DIR/tilix.dconf
 
-echo "Done! Restart tilix for changes to take effect"
+echo "INFO: Restart tilix for changes to take effect"

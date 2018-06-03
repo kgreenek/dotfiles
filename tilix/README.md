@@ -1,11 +1,8 @@
-# Setting up tilix
+# Tilix config
 
-## Install tilix
-```bash
-sudo apt install tilix
-```
+## Updating tilix.dconf
 
-## Setup tilix
+Make desired changes in the tilix preferences (GUI), and then run the following command:
 ```bash
-./setup.sh
+dconf dump /com/gexperts/Tilix/ > tilix.dconf
 ```

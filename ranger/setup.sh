@@ -1,0 +1,17 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+RANGER_CONFIG_DIR=$HOME/.config/ranger
+
+if [[ ! -d $RANGER_CONFIG_DIR ]]; then
+  echo "WARNING: $RANGER_CONFIG_DIR does not exist, so creating it. Is ranger installed?"
+  mkdir -p $RANGER_CONFIG_DIR
+fi
+
+if [[ -f $RANGER_CONFIG_DIR/rc.conf && ! -L $RANGER_CONFIG_DIR/rc.conf ]]; then
+  echo "WARNING: $RANGER_CONFIG_DIR/rc.conf already exists. Skipping..."
+else
+  if [[ -L $RANGER_CONFIG_DIR/rc.conf ]]; then
+    echo "INFO: Over-writing existing symlink $RANGER_CONFIG_DIR/rc.conf"
+  fi
+  ln -sf $DIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
+fi
