@@ -83,6 +83,21 @@ let g:netrw_liststyle=3
 " Hide banner by default (press "I" to toggle it).
 let g:netrw_banner=0
 
+" Save swp, undo, and backup files in a central location instead of the cwd.
+" For Unix and Win32, if a directory ends in two path separators "//" or "\\",
+" the swap file name will be built from the complete path to the file with all
+" path separators substituted to percent '%' signs. This will ensure file name
+" uniqueness in the preserve directory.
+silent call mkdir($HOME."/.vim/bak", "p")
+set backupdir=$HOME/.vim/bak//
+silent call mkdir($HOME."/.vim/swp", "p")
+set directory=$HOME/.vim/swp//
+silent call mkdir($HOME."/.vim/undo", "p")
+set undodir=$HOME/.vim/undo//
+
+" Enable persistent undo, to keep undo history even after the file is closed.
+set undofile
+
 " Tell vim where to look for tags file. It'll look in the current directory,
 " then the parent directory, and up until it hits HOME (that's what the
 " semicolon means).
