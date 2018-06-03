@@ -1,0 +1,43 @@
+[keybindings]
+session-add-down='<Primary><Alt>e'
+
+[/]
+sidebar-on-right=false
+terminal-title-style='small'
+theme-variant='dark'
+window-style='normal'
+
+[profiles]
+list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', '35dea304-4482-4a20-af88-13ac9385a71a']
+default='35dea304-4482-4a20-af88-13ac9385a71a'
+
+[profiles/35dea304-4482-4a20-af88-13ac9385a71a]
+foreground-color='#00FF00'
+rewrap-on-resize=true
+visible-name='kevin'
+palette=['#2E3436', '#CC0000', '#4D9A06', '#C4A000', '#3364A4', '#75507B', '#06989A', '#D3D7CF', '#555753', '#EF2828', '#89E233', '#FCE94F', '#729ECF', '#AD7FA8', '#33E2E2', '#EEEEEC']
+bold-is-bright=true
+badge-color-set=false
+use-system-font=false
+cursor-colors-set=false
+highlight-colors-set=false
+use-theme-colors=false
+bold-color-set=false
+font='Inconsolata for Powerline Medium 12'
+background-color='#000000'
+background-transparency-percent=28
+dim-transparency-percent=17
+scrollback-lines=16000
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+foreground-color='#F8F8F2'
+visible-name='Default'
+palette=['#272822', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F8F8F2', '#75715E', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F9F8F5']
+badge-color-set=false
+cursor-colors-set=false
+highlight-colors-set=false
+use-theme-colors=false
+bold-color-set=false
+background-color='#272822'
+background-transparency-percent=14
+dim-transparency-percent=0
