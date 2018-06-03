@@ -12,14 +12,7 @@ echo "--Setting up ~/.bashrc"
 $DIR/bash/setup.sh
 
 echo "--Setting up ~/.vimrc"
-if [[ -f $HOME/.vimrc && ! -L $HOME/.vimrc ]]; then
-  echo "WARNING: $HOME/.vimrc already exists. Skipping..."
-else
-  if [[ -L $HOME/.vimrc ]]; then
-    echo "INFO: Over-writing existing symlink $HOME/.vimrc"
-  fi
-  ln -sf $DIR/.vimrc $HOME/.vimrc
-fi
+$DIR/vim/setup.sh
 
 echo "--Setting up ranger"
 $DIR/ranger/setup.sh
