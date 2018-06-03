@@ -8,6 +8,9 @@ fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+echo "--Creating dirs"
+mkdir -p ~/bin
+
 echo "--Setting up ~/.bashrc"
 $DIR/bash/setup.sh
 
