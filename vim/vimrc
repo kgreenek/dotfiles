@@ -43,18 +43,16 @@ let g:airline_powerline_fonts = 1
 let g:ycm_confirm_extra_conf = 0
 map <C-j> :YcmCompleter GoToDeclaration<CR>
 
-" vim-cpp-enhanced-highlight settings
-let g:cpp_class_scope_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
-
 " vim-clang-format settings
-let g:clang_format#code_style="google"
-let g:clang_format#style_options = {
-  \ "AllowShortIfStatementsOnASingleLine" : "true",
-  \ "DerivePointerAlignment" : "false",
-  \ "PointerAlignment" : "Right",
-  \ "Standard" : "C++11",
-  \ "ColumnLimit" : "100" }
+" Disabled for now, since projects should specify their own .clang-format
+" files and we don't want to over-rule the project-specific settings.
+"let g:clang_format#code_style="google"
+"let g:clang_format#style_options = {
+"  \ "AllowShortIfStatementsOnASingleLine" : "true",
+"  \ "DerivePointerAlignment" : "false",
+"  \ "PointerAlignment" : "Right",
+"  \ "Standard" : "C++11",
+"  \ "ColumnLimit" : "100" }
 autocmd FileType c,cpp,objc nnoremap <C-k> :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <C-k> :ClangFormat<CR>
 
