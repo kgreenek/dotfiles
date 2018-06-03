@@ -12,10 +12,7 @@ Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
-" Disabled for now, because it performs very badly when paired with relative
-" line numbers, due to the fact that it redraws the whole screen every time
-" the cursor is moved.
-"Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'bfrg/vim-cpp-modern'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'JamshedVesuna/vim-markdown-preview'
