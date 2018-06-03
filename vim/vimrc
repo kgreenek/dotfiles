@@ -6,23 +6,34 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
+Plugin 'francoiscabrol/ranger.vim'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+" Disabled for now, because it performs very badly when paired with relative
+" line numbers, due to the fact that it redraws the whole screen every time
+" the cursor is moved.
+"Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'rust-lang/rust.vim'
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 call vundle#end()
 filetype plugin indent on
 
 " Nerdtree settings
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeQuitOnOpen = 1
+"map <C-n> :NERDTreeToggle<CR>
+"let g:NERDTreeQuitOnOpen = 1
+
+" Ranger settings
+" open ranger when vim open a directory
+let g:ranger_replace_netrw = 1
+" Disable the default leader-f keybinding and use ours instead.
+let g:ranger_map_keys = 0
+map <C-n> :Ranger<CR>
 
 " vim-airline settings
 " Show buffers at the top if no tabs are open.
@@ -73,6 +84,10 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--max-line-length=100'
 
 let g:syntastic_rust_checkers=["cargo"]
+
+" Disable syntastic with c/c++ since it'll clash with YouCompleteMe.
+let g:syntastic_c_checkers=['']
+let g:syntastic_cpp_checkers=['']
 
 " Use grip with vim-markdown-preview
 let vim_markdown_preview_github=1
