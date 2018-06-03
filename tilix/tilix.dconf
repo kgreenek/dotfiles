@@ -5,7 +5,7 @@ session-add-down='<Primary><Alt>e'
 sidebar-on-right=false
 terminal-title-style='small'
 theme-variant='dark'
-window-style='normal'
+window-style='borderless'
 
 [profiles]
 list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', '35dea304-4482-4a20-af88-13ac9385a71a']
