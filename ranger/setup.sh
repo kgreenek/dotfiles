@@ -15,3 +15,7 @@ else
   fi
   ln -sf $DIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
 fi
+
+if [[ ! -f $HOME/.config/ranger/scope.sh ]]; then
+  ranger --copy-config=scope
+fi
