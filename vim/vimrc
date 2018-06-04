@@ -145,8 +145,8 @@ set ruler
 
 " Show a ruler to the right of 100 chars.
 set colorcolumn=100
-" Make the ruler orange instead of the default red.
-highlight ColorColumn ctermbg=172
+" Make the ruler orange (goldenrod) instead of the default red.
+highlight ColorColumn ctermbg=136
 
 " Size of a hard tabstop.
 set tabstop=2
