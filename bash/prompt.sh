@@ -47,4 +47,17 @@ function parse_git_dirty {
   fi
 }
 
-export PS1="\[\033[38;5;14m\]\w \[\033[38;5;13m\]\`parse_git_branch\`\\[\e[m\]$ "
+function virtualenv_info() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    # Strip out the path and just leave the env name.
+    venv="${VIRTUAL_ENV##*/}"
+  else
+    venv=''
+  fi
+  [[ -n "$venv" ]] && echo "($venv) "
+}
+
+# Disable the default virtualenv prompt change.
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+export PS1="\`virtualenv_info\`\[\033[38;5;14m\]\w \[\033[38;5;13m\]\`parse_git_branch\`\\[\e[m\]$ "
