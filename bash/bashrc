@@ -3,5 +3,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/prompt.sh
 source $DIR/vte_fix.sh
 
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export EDITOR=vim
