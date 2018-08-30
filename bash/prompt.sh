@@ -60,4 +60,4 @@ function virtualenv_info() {
 # Disable the default virtualenv prompt change.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-export PS1="\`virtualenv_info\`\[\033[38;5;14m\]\w \[\033[38;5;13m\]\`parse_git_branch\`\\[\e[m\]$ "
+export PS1="\`virtualenv_info\`\u@\h \[\033[38;5;14m\]\w \[\033[38;5;13m\]\`parse_git_branch\`\\[\e[m\]$ "
