@@ -17,6 +17,9 @@ $DIR/bash/setup.sh
 echo "--Setting up ~/.vimrc"
 $DIR/vim/setup.sh
 
+echo "--Setting up fonts"
+$DIR/fonts/setup.sh
+
 echo "--Setting up ranger"
 $DIR/ranger/setup.sh
 
