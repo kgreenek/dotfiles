@@ -11,3 +11,8 @@ else
   fi
   ln -sf $DIR/vimrc $HOME/.vimrc
 fi
+
+mkdir -p $HOME/.vim/bundle
+if [[ ! -d $HOME/.vim/bundle/Vundle.vim ]]; then
+  git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+fi
