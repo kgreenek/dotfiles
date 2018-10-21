@@ -15,9 +15,10 @@ Plugin 'rdnetto/YCM-Generator'
 Plugin 'bfrg/vim-cpp-modern'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'tell-k/vim-autopep8'
+Plugin 'tikhomirov/vim-glsl'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'rust-lang/rust.vim'
-"Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic'
 call vundle#end()
 filetype plugin indent on
 
