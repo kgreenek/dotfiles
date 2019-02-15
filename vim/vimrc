@@ -20,7 +20,6 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'peter-edge/vim-capnp'
 Plugin 'bazelbuild/vim-ft-bzl'
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
-Plugin 'plytophogy/vim-virtualenv'
 call vundle#end()
 filetype plugin indent on
 
