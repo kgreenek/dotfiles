@@ -6,7 +6,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-"Plugin 'scrooloose/nerdtree'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
@@ -14,41 +13,45 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'bfrg/vim-cpp-modern'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'tell-k/vim-autopep8'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'peter-edge/vim-capnp'
+Plugin 'bazelbuild/vim-ft-bzl'
+Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
+Plugin 'plytophogy/vim-virtualenv'
 call vundle#end()
 filetype plugin indent on
 
 " Nerdtree settings
 "map <C-n> :NERDTreeToggle<CR>
-"let g:NERDTreeQuitOnOpen = 1
+"let g:NERDTreeQuitOnOpen=1
 
 " Ranger settings
 " open ranger when vim open a directory
-let g:ranger_replace_netrw = 1
+let g:ranger_replace_netrw=1
 " Disable the default leader-f keybinding and use ours instead.
-let g:ranger_map_keys = 0
+let g:ranger_map_keys=0
 map <C-n> :Ranger<CR>
 
 " vim-airline settings
 " Show buffers at the top if no tabs are open.
 let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 
 " YouCompleteMe settings
 " Prevent YouCompleteMe from showing a warning every time it loads
 " .ycm_extra_conf.py.
-let g:ycm_confirm_extra_conf = 0
-map <C-j> :YcmCompleter GoToDeclaration<CR>
+let g:ycm_confirm_extra_conf=0
+let g:ycm_autoclose_preview_window_after_completion=1
+map <C-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " vim-clang-format settings
 " Disabled for now, since projects should specify their own .clang-format
 " files and we don't want to over-rule the project-specific settings.
 "let g:clang_format#code_style="google"
-"let g:clang_format#style_options = {
+"let g:clang_format#style_options={
 "  \ "AllowShortIfStatementsOnASingleLine" : "true",
 "  \ "DerivePointerAlignment" : "false",
 "  \ "PointerAlignment" : "Right",
@@ -66,18 +69,22 @@ autocmd FileType rust vnoremap <C-k> :'<,'>RustFmtRange<CR>
 " Autopep8 settings
 let g:autopep8_disable_show_diff=1
 let g:autopep8_max_line_length=100
-autocmd FileType python nnoremap <C-k> :<C-u>Autopep8<CR>
-autocmd FileType python vnoremap <C-k> :'<,'>Autopep8<CR>
+"autocmd FileType python nnoremap <C-k> :<C-u>Autopep8<CR>
+"autocmd FileType python vnoremap <C-k> :'<,'>Autopep8<CR>
+
+" Yapf settings
+autocmd FileType python nnoremap <C-k> :<C-u>YAPF<CR>
+autocmd FileType python vnoremap <C-k> :'<,'>YAPF<CR>
 
 " Syntastic settings
 " NOTE: Do not set syntastic statusline flags because airline picks up
 " syntastic automatically and manages the statusline.
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
 
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--max-line-length=100'
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--max-line-length=100'
 
 let g:syntastic_rust_checkers=["cargo"]
 
@@ -127,6 +134,7 @@ set tags=./tags,tags;$HOME
 set clipboard=unnamedplus
 
 " Enable syntax highlighting.
+let python_highlight_all=1
 syntax on
 
 " This is the default theme used for "dark" terminals.
