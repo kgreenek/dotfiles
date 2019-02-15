@@ -1,11 +1,13 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $DIR/prompt.sh
-source $DIR/vte_fix.sh
+source "$DIR/prompt.sh"
+source "$DIR/vte_fix.sh"
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export EDITOR=vim
+
+alias ls=lsd
 
 alias cmake='PATH=/usr/lib/ccache:$PATH /usr/bin/time cmake'
 alias make='PATH=/usr/lib/ccache:$PATH /usr/bin/time make'
