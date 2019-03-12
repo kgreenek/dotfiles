@@ -131,6 +131,14 @@ set tags=./tags,tags;$HOME
 " Enables yanking into the system clipboard, so you can "yy" to yank the
 " current line, and then paste it to another application.
 set clipboard=unnamedplus
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    " On mac, unnamed appears to do the right thing, and unnamedplus doesn't
+    " work.
+    set clipboard=unnamed
+  endif
+endif
 
 " Enable syntax highlighting.
 let python_highlight_all=1
