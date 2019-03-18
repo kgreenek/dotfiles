@@ -13,6 +13,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+alias ltd='ls --tree --depth'
 
 alias cmake='PATH=/usr/lib/ccache:$PATH /usr/bin/time cmake'
 alias make='PATH=/usr/lib/ccache:$PATH /usr/bin/time make'
