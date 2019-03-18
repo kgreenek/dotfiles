@@ -8,6 +8,11 @@ export PATH=$HOME/bin:$PATH
 export EDITOR=vim
 
 alias ls=lsd
+alias l='ls -l'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 
 alias cmake='PATH=/usr/lib/ccache:$PATH /usr/bin/time cmake'
 alias make='PATH=/usr/lib/ccache:$PATH /usr/bin/time make'
