@@ -1,11 +1,12 @@
-[keybindings]
-session-add-down='<Primary><Alt>e'
-
 [/]
-sidebar-on-right=false
 terminal-title-style='small'
+sidebar-on-right=false
+quake-specific-monitor=0
 theme-variant='dark'
 window-style='borderless'
+
+[keybindings]
+session-add-down='<Primary><Alt>e'
 
 [profiles]
 list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', '35dea304-4482-4a20-af88-13ac9385a71a']
@@ -23,7 +24,7 @@ cursor-colors-set=false
 highlight-colors-set=false
 use-theme-colors=false
 bold-color-set=false
-font='Cousine for Powerline 10'
+font='Cousine Nerd Font 10'
 background-color='#000000'
 background-transparency-percent=28
 dim-transparency-percent=17

@@ -1,11 +1,13 @@
 #!/bin/bash
+
+#!/bin/bash
 set -e
-if [[ -d $HOME/src/powerline/fonts ]]; then
-  echo "Powerline fonts already cloned. Not installing..."
+if [[ -d $HOME/src/ryanoasis/nerd-fonts ]]; then
+  echo "Nerd fonts already cloned. Not installing..."
 else
-  mkdir -p $HOME/src/powerline
-  cd $HOME/src/powerline
-  git clone https://github.com/powerline/fonts.git --depth=1
-  cd fonts
+  mkdir -p $HOME/src/ryanoasis
+  cd $HOME/src/ryanoasis
+  git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
+  cd nerd-fonts
   ./install.sh
 fi
