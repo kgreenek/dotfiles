@@ -38,6 +38,8 @@ map <C-n> :Ranger<CR>
 " Show buffers at the top if no tabs are open.
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
+let g:airline_left_sep = "\uE0D2"
+let g:airline_right_sep = "\uE0D4"
 
 " YouCompleteMe settings
 " Prevent YouCompleteMe from showing a warning every time it loads

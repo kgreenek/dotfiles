@@ -31,6 +31,16 @@ line="source $dir/zshrc"
 file="$HOME/.zshrc"
 grep -qF -- "$line" "$file" || echo "$line" >> "$file"
 
+# Install themes.
+if [ -d "$ZSH/custom/themes/powerlevel9k" ]; then
+  echo "INFO: powerlevel9k already set up. Skipping..."
+else
+  env git clone https://github.com/bhilburn/powerlevel9k.git "$ZSH/custom/themes/powerlevel9k" || {
+    echo "ERROR: git clone of powerlevel9k repo failed"
+    exit 1
+  }
+fi
+
 # Install plugins.
 if [ -d "$ZSH/custom/plugins/zsh-syntax-highlighting" ]; then
   echo "INFO: zsh-syntax-highlighting already set up. Skipping..."
