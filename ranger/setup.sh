@@ -1,5 +1,5 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 RANGER_CONFIG_DIR=$HOME/.config/ranger
 
 if [[ ! -d $RANGER_CONFIG_DIR ]]; then
@@ -13,7 +13,7 @@ else
   if [[ -L $RANGER_CONFIG_DIR/rc.conf ]]; then
     echo "INFO: Over-writing existing symlink $RANGER_CONFIG_DIR/rc.conf"
   fi
-  ln -sf $DIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
+  ln -sf $dir/rc.conf $RANGER_CONFIG_DIR/rc.conf
 fi
 
 if [[ ! -f $HOME/.config/ranger/scope.sh ]]; then

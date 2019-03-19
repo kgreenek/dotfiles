@@ -6,24 +6,28 @@ if [ "$EUID" -eq 0 ]
   exit 1
 fi
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 echo "--Creating dirs"
 mkdir -p ~/bin
+mkdir -p ~/src
 
-echo "--Setting up ~/.bashrc"
-$DIR/bash/setup.sh
+echo "--Setting up zsh"
+$dir/zsh/setup.sh
 
-echo "--Setting up ~/.vimrc"
-$DIR/vim/setup.sh
+echo "--Setting up bash"
+$dir/bash/setup.sh
+
+echo "--Setting up vim"
+$dir/vim/setup.sh
 
 echo "--Setting up fonts"
-$DIR/fonts/setup.sh
+$dir/fonts/setup.sh
 
 echo "--Setting up ranger"
-$DIR/ranger/setup.sh
+$dir/ranger/setup.sh
 
 echo "--Setting up tilix"
-$DIR/tilix/setup.sh
+$dir/tilix/setup.sh
 
 echo "SUCCESS!"

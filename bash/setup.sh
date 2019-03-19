@@ -1,7 +1,7 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 # Add line to source ./bashrc if it doesn't already exist in .bashrc.
-LINE="source $DIR/bashrc"
-FILE=$HOME/.bashrc
-grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+line="source $dir/bashrc"
+file=$HOME/.bashrc
+grep -qF -- "$line" "$file" || echo "$line" >> "$file"
