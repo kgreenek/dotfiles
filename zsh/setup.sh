@@ -1,8 +1,8 @@
 #!/bin/bash
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 if [ ! -n "$ZSH" ]; then
-  ZSH=~/.oh-my-zsh
+  ZSH="$HOME/.oh-my-zsh"
 fi
 
 if [ -d "$ZSH" ]; then
@@ -30,3 +30,22 @@ fi
 line="source $dir/zshrc"
 file="$HOME/.zshrc"
 grep -qF -- "$line" "$file" || echo "$line" >> "$file"
+
+# Install plugins.
+if [ -d "$ZSH/custom/plugins/zsh-syntax-highlighting" ]; then
+  echo "INFO: zsh-syntax-highlighting already set up. Skipping..."
+else
+  env git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH/custom/plugins/zsh-syntax-highlighting" || {
+    echo "ERROR: git clone of zsh-syntax-highlighting repo failed"
+    exit 1
+  }
+fi
+
+if [ -d "$ZSH/custom/plugins/zsh-autosuggestions" ]; then
+  echo "INFO: zsh-autosuggestions already set up. Skipping..."
+else
+  env git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH/custom/plugins/zsh-autosuggestions" || {
+    echo "ERROR: git clone of zsh-autosuggestions repo failed"
+    exit 1
+  }
+fi

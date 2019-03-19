@@ -1,6 +1,4 @@
 #!/bin/bash
-
-#!/bin/bash
 set -e
 if [[ -d $HOME/src/ryanoasis/nerd-fonts ]]; then
   echo "Nerd fonts already cloned. Not installing..."
