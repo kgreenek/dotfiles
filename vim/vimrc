@@ -161,8 +161,8 @@ augroup END
 " Show the current row and column at the bottom.
 set ruler
 
-" Show a ruler to the right of 120 chars.
-set colorcolumn=120
+" Show a ruler at important columns.
+let &colorcolumn="80,120"
 " Make the ruler orange (goldenrod) instead of the default red.
 highlight ColorColumn ctermbg=136
 
