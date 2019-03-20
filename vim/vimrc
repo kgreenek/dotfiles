@@ -199,6 +199,9 @@ set backspace=indent,eol,start
 " Allow switching buffers without saving the current buffer first.
 set hidden
 
+" This controls how often the gitgutter plugin's diff markers are updated.
+set updatetime=100
+
 " Map ctrl-h to move to the previous buffer ":bp", and ctrl-l to move to the
 " next buffer "bn".
 map <C-h> :bp<CR>
