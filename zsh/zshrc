@@ -39,6 +39,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   vcs
   virtualenv
   time
+  status
 )
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
