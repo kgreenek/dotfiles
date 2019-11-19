@@ -66,4 +66,5 @@ bindkey -v
 bindkey 'jj' vi-cmd-mode
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+[ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
 source "$dir/../sh_common/rc"

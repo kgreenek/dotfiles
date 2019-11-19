@@ -12,6 +12,9 @@ echo "--Creating dirs"
 mkdir -p ~/bin
 mkdir -p ~/src
 
+echo "--Setting up fzf"
+$dir/fzf/setup.sh
+
 echo "--Setting up zsh"
 $dir/zsh/setup.sh
 

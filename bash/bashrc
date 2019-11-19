@@ -1,5 +1,7 @@
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 source "$dir/prompt.sh"
 
+[ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
+
 # NOTE: This also sets dir, so do it after setting the prompt above.
 source "$dir/../sh_common/rc"
