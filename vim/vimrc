@@ -17,7 +17,7 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'peter-edge/vim-capnp'
+"Plugin 'peter-edge/vim-capnp'
 Plugin 'bazelbuild/vim-ft-bzl'
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 call vundle#end()
@@ -162,7 +162,7 @@ augroup END
 set ruler
 
 " Show a ruler at important columns.
-let &colorcolumn="80,120"
+let &colorcolumn="100"
 " Make the ruler orange (goldenrod) instead of the default red.
 highlight ColorColumn ctermbg=136
 
