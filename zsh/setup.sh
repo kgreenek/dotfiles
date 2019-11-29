@@ -15,7 +15,7 @@ else
   # precedence over umasks except for filesystems mounted with option "noacl".
   umask g-w,o-w
 
-  env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "$ZSH" || {
+  env git clone -q --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "$ZSH" || {
     echo "ERROR: git clone of oh-my-zsh repo failed"
     exit 1
   }
@@ -35,7 +35,7 @@ grep -qF -- "$line" "$file" || echo "$line" >> "$file"
 if [ -d "$ZSH/custom/themes/powerlevel9k" ]; then
   echo "INFO: powerlevel9k already set up. Skipping..."
 else
-  env git clone https://github.com/bhilburn/powerlevel9k.git "$ZSH/custom/themes/powerlevel9k" || {
+  env git clone -q https://github.com/bhilburn/powerlevel9k.git "$ZSH/custom/themes/powerlevel9k" || {
     echo "ERROR: git clone of powerlevel9k repo failed"
     exit 1
   }
@@ -45,7 +45,7 @@ fi
 if [ -d "$ZSH/custom/plugins/zsh-syntax-highlighting" ]; then
   echo "INFO: zsh-syntax-highlighting already set up. Skipping..."
 else
-  env git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH/custom/plugins/zsh-syntax-highlighting" || {
+  env git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH/custom/plugins/zsh-syntax-highlighting" || {
     echo "ERROR: git clone of zsh-syntax-highlighting repo failed"
     exit 1
   }
@@ -54,7 +54,7 @@ fi
 if [ -d "$ZSH/custom/plugins/zsh-autosuggestions" ]; then
   echo "INFO: zsh-autosuggestions already set up. Skipping..."
 else
-  env git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH/custom/plugins/zsh-autosuggestions" || {
+  env git clone -q https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH/custom/plugins/zsh-autosuggestions" || {
     echo "ERROR: git clone of zsh-autosuggestions repo failed"
     exit 1
   }

@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-sudo apt-get update
+sudo apt-get -qq update
 
 # caca-utils gives us the img2txt binary so ranger can generate ascii image previews.
 # highlight enables syntax highlighting in ranger previews.
 # vim-gtk enables using the system clipboard from within vim.
-sudo apt-get install -y \
+sudo apt-get -qq install -y \
   build-essential \
   caca-utils \
   ccache \
