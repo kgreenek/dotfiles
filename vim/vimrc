@@ -5,21 +5,22 @@ filetype off
 " Set the runtime path to include Vundle and initialize.
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'francoiscabrol/ranger.vim'
-Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'bfrg/vim-cpp-modern'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'tikhomirov/vim-glsl'
 Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'rust-lang/rust.vim'
-Plugin 'vim-syntastic/syntastic'
-"Plugin 'peter-edge/vim-capnp'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bazelbuild/vim-ft-bzl'
+Plugin 'bfrg/vim-cpp-modern'
+Plugin 'bling/vim-airline'
+Plugin 'cstrahan/vim-capnp'
+Plugin 'francoiscabrol/ranger.vim'
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'rust-lang/rust.vim'
+Plugin 'tikhomirov/vim-glsl'
+"Plugin 'vim-syntastic/syntastic'
 call vundle#end()
 filetype plugin indent on
 
