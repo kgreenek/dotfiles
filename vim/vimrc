@@ -206,6 +206,9 @@ set hidden
 " This controls how often the gitgutter plugin's diff markers are updated.
 set updatetime=100
 
+" Jumps to search word as you type.
+set incsearch
+
 " Map ctrl-h to move to the previous buffer ":bp", and ctrl-l to move to the
 " next buffer "bn".
 map <C-h> :bp<CR>
