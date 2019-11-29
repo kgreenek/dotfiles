@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 fzf_install_dir="${HOME}/.fzf"
 
 if [[ ! -d $fzf_install_dir ]]; then
