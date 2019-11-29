@@ -12,25 +12,31 @@ echo "--Creating dirs"
 mkdir -p ~/bin
 mkdir -p ~/src
 
-echo "--Setting up fzf"
+echo "--Installing Ubuntu system packages"
+$dir/ubuntu/setup.sh
+
+echo "--Installing rust and cargo packages"
+$dir/rust/setup.sh
+
+echo "--Installing fzf"
 $dir/fzf/setup.sh
 
-echo "--Setting up zsh"
-$dir/zsh/setup.sh
-
-echo "--Setting up bash"
-$dir/bash/setup.sh
-
-echo "--Setting up vim"
-$dir/vim/setup.sh
-
-echo "--Setting up fonts"
+echo "--Installing fonts"
 $dir/fonts/setup.sh
 
-echo "--Setting up ranger"
+echo "--Setting up zsh config"
+$dir/zsh/setup.sh
+
+echo "--Setting up bash config"
+$dir/bash/setup.sh
+
+echo "--Setting up vim config"
+$dir/vim/setup.sh
+
+echo "--Setting up ranger config"
 $dir/ranger/setup.sh
 
-echo "--Setting up tilix"
+echo "--Setting up tilix config"
 $dir/tilix/setup.sh
 
 echo "SUCCESS!"

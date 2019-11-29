@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 RANGER_CONFIG_DIR=$HOME/.config/ranger
 
