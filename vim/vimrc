@@ -1,37 +1,47 @@
 set nocompatible
 
-" Vundle settings
-filetype off
-" Set the runtime path to include Vundle and initialize.
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-"Plugin 'vim-syntastic/syntastic'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bazelbuild/vim-ft-bzl'
-Plugin 'bfrg/vim-cpp-modern'
-Plugin 'bling/vim-airline'
-Plugin 'cstrahan/vim-capnp'
-Plugin 'francoiscabrol/ranger.vim'
-Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'rust-lang/rust.vim'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tpope/vim-surround'
-call vundle#end()
-filetype plugin indent on
+" Auto-install plug and plugins if it doesn't exist already.
+" See: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" Nerdtree settings
-"map <C-n> :NERDTreeToggle<CR>
-"let g:NERDTreeQuitOnOpen=1
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status != 'unchanged' || a:info.force
+    !./install.py --clangd-completer --rust-completer --ts-completer
+  endif
+endfunction
+
+call plug#begin('~/.vim/bundle')
+"Plug 'vim-syntastic/syntastic'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'airblade/vim-gitgutter'
+Plug 'bazelbuild/vim-ft-bzl'
+Plug 'bfrg/vim-cpp-modern'
+Plug 'bling/vim-airline'
+Plug 'cstrahan/vim-capnp'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+Plug 'grailbio/bazel-compilation-database'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+Plug 'junegunn/fzf.vim'
+Plug 'rhysd/vim-clang-format', {'for': 'cpp' }
+Plug 'rust-lang/rust.vim'
+Plug 'tikhomirov/vim-glsl'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
+call plug#end()
+
+filetype plugin indent on
 
 " Ranger settings
 " open ranger when vim open a directory
@@ -48,11 +58,15 @@ let g:airline_left_sep = "\uE0D2"
 let g:airline_right_sep = "\uE0D4"
 
 " YouCompleteMe settings
+map <C-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Prevent YouCompleteMe from showing a warning every time it loads
 " .ycm_extra_conf.py.
 let g:ycm_confirm_extra_conf=0
 let g:ycm_autoclose_preview_window_after_completion=1
-map <C-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Recommended settings from: https://clang.llvm.org/extra/clangd/Installation.html
+" Let clangd fully control code completion.
+let g:ycm_clangd_uses_ycmd_caching = 0
 
 " vim-clang-format settings
 " Disabled for now, since projects should specify their own .clang-format
