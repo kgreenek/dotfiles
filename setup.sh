@@ -15,6 +15,9 @@ mkdir -p ~/src
 echo "--Installing Ubuntu system packages"
 $dir/ubuntu/setup.sh
 
+echo "--Installing pip user packages"
+$dir/pip/setup.sh
+
 echo "--Installing rust and cargo packages"
 $dir/rust/setup.sh
 

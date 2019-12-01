@@ -17,8 +17,10 @@ sudo apt-get -qq install -y \
   git \
   highlight \
   htop \
-  ranger \
+  nodejs \
+  npm \
   python3-dev \
+  python3-pip \
   tilix \
   time \
   vim \
