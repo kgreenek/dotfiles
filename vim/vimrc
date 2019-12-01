@@ -30,7 +30,7 @@ Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'grailbio/bazel-compilation-database'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
-Plug 'rhysd/vim-clang-format', {'for': 'cpp' }
+Plug 'rhysd/vim-clang-format', { 'for': 'cpp' }
 Plug 'rust-lang/rust.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'tpope/vim-fugitive'
@@ -53,8 +53,8 @@ map <C-n> :Ranger<CR>
 " Show buffers at the top if no tabs are open.
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
-let g:airline_left_sep = "\uE0D2"
-let g:airline_right_sep = "\uE0D4"
+let g:airline_left_sep="\uE0D2"
+let g:airline_right_sep="\uE0D4"
 
 " YouCompleteMe settings
 map <C-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -65,7 +65,7 @@ let g:ycm_autoclose_preview_window_after_completion=1
 
 " Recommended settings from: https://clang.llvm.org/extra/clangd/Installation.html
 " Let clangd fully control code completion.
-let g:ycm_clangd_uses_ycmd_caching = 0
+let g:ycm_clangd_uses_ycmd_caching=0
 
 " vim-clang-format settings
 " Disabled for now, since projects should specify their own .clang-format
