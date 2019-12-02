@@ -67,3 +67,5 @@ bindkey 'jj' vi-cmd-mode
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 source "$dir/../sh_common/rc"
+
+export PATH="$HOME/.cargo/bin:$PATH"
