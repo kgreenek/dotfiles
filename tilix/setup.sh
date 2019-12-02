@@ -21,5 +21,3 @@ fi
 
 echo "INFO: Installing dconf config..."
 dconf load /com/gexperts/Tilix/ < $dir/tilix.dconf
-
-sudo update-alternatives --set x-terminal-emulator /usr/bin/tilix
