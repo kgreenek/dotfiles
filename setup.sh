@@ -12,22 +12,40 @@ echo "--Creating dirs"
 mkdir -p ~/bin
 mkdir -p ~/src
 
-echo "--Setting up zsh"
-$dir/zsh/setup.sh
+echo "--Installing Ubuntu system packages"
+$dir/ubuntu/setup.sh
 
-echo "--Setting up bash"
-$dir/bash/setup.sh
+echo "--Installing pip user packages"
+$dir/pip/setup.sh
 
-echo "--Setting up vim"
-$dir/vim/setup.sh
+echo "--Installing rust and cargo packages"
+$dir/rust/setup.sh
 
-echo "--Setting up fonts"
+echo "--Installing fzf"
+$dir/fzf/setup.sh
+
+echo "--Installing fonts"
 $dir/fonts/setup.sh
 
-echo "--Setting up ranger"
+echo "--Setting up zsh config"
+$dir/zsh/setup.sh
+
+echo "--Setting up bash config"
+$dir/bash/setup.sh
+
+echo "--Setting up vim config"
+$dir/vim/setup.sh
+
+echo "--Setting up ranger config"
 $dir/ranger/setup.sh
 
-echo "--Setting up tilix"
+echo "--Setting up tilix config"
 $dir/tilix/setup.sh
 
+echo ""
 echo "SUCCESS!"
+echo ""
+
+echo "* Install conky config by running ./conky/setup.sh"
+echo "* Set tilix as default terminal emulator on Ubuntu with the following command:"
+echo "    sudo update-alternatives --config x-terminal-emulator"

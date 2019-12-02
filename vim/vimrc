@@ -1,31 +1,46 @@
 set nocompatible
 
-" Vundle settings
-filetype off
-" Set the runtime path to include Vundle and initialize.
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'francoiscabrol/ranger.vim'
-Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'bfrg/vim-cpp-modern'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'rust-lang/rust.vim'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'peter-edge/vim-capnp'
-Plugin 'bazelbuild/vim-ft-bzl'
-Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
-call vundle#end()
-filetype plugin indent on
+" Auto-install plug and plugins if it doesn't exist already.
+" See: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" Nerdtree settings
-"map <C-n> :NERDTreeToggle<CR>
-"let g:NERDTreeQuitOnOpen=1
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status != 'unchanged' || a:info.force
+    !./install.py --clangd-completer --rust-completer --ts-completer
+  endif
+endfunction
+
+call plug#begin('~/.vim/bundle')
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'airblade/vim-gitgutter'
+Plug 'bazelbuild/vim-ft-bzl'
+Plug 'bfrg/vim-cpp-modern'
+Plug 'bling/vim-airline'
+Plug 'cstrahan/vim-capnp'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+Plug 'grailbio/bazel-compilation-database'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+Plug 'junegunn/fzf.vim'
+Plug 'rhysd/vim-clang-format', { 'for': 'cpp' }
+Plug 'rust-lang/rust.vim'
+Plug 'tikhomirov/vim-glsl'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
+call plug#end()
+
+filetype plugin indent on
 
 " Ranger settings
 " open ranger when vim open a directory
@@ -38,15 +53,19 @@ map <C-n> :Ranger<CR>
 " Show buffers at the top if no tabs are open.
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
-let g:airline_left_sep = "\uE0D2"
-let g:airline_right_sep = "\uE0D4"
+let g:airline_left_sep="\uE0D2"
+let g:airline_right_sep="\uE0D4"
 
 " YouCompleteMe settings
+map <C-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Prevent YouCompleteMe from showing a warning every time it loads
 " .ycm_extra_conf.py.
 let g:ycm_confirm_extra_conf=0
 let g:ycm_autoclose_preview_window_after_completion=1
-map <C-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Recommended settings from: https://clang.llvm.org/extra/clangd/Installation.html
+" Let clangd fully control code completion.
+let g:ycm_clangd_uses_ycmd_caching=0
 
 " vim-clang-format settings
 " Disabled for now, since projects should specify their own .clang-format
@@ -67,31 +86,9 @@ autocmd FileType rust nnoremap <C-k> :<C-u>RustFmt<CR>
 " See: https://github.com/rust-lang/rust.vim/issues/156
 autocmd FileType rust vnoremap <C-k> :'<,'>RustFmtRange<CR>
 
-" Autopep8 settings
-let g:autopep8_disable_show_diff=1
-let g:autopep8_max_line_length=120
-"autocmd FileType python nnoremap <C-k> :<C-u>Autopep8<CR>
-"autocmd FileType python vnoremap <C-k> :'<,'>Autopep8<CR>
-
 " Yapf settings
 autocmd FileType python nnoremap <C-k> :<C-u>YAPF<CR>
 autocmd FileType python vnoremap <C-k> :'<,'>YAPF<CR>
-
-" Syntastic settings
-" NOTE: Do not set syntastic statusline flags because airline picks up
-" syntastic automatically and manages the statusline.
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--max-line-length=120'
-
-let g:syntastic_rust_checkers=["cargo"]
-
-" Disable syntastic with c/c++ since it'll clash with YouCompleteMe.
-let g:syntastic_c_checkers=['']
-let g:syntastic_cpp_checkers=['']
 
 " Use grip with vim-markdown-preview
 let vim_markdown_preview_github=1
@@ -162,7 +159,7 @@ augroup END
 set ruler
 
 " Show a ruler at important columns.
-let &colorcolumn="80,120"
+let &colorcolumn="100"
 " Make the ruler orange (goldenrod) instead of the default red.
 highlight ColorColumn ctermbg=136
 
@@ -201,6 +198,9 @@ set hidden
 
 " This controls how often the gitgutter plugin's diff markers are updated.
 set updatetime=100
+
+" Jumps to search word as you type.
+set incsearch
 
 " Map ctrl-h to move to the previous buffer ":bp", and ctrl-l to move to the
 " next buffer "bn".
