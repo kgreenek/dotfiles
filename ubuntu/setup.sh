@@ -5,7 +5,7 @@ sudo apt-get -qq update
 
 # caca-utils gives us the img2txt binary so ranger can generate ascii image previews.
 # highlight enables syntax highlighting in ranger previews.
-# python3-dev is needed to compile the youcompleteme vim plugin.
+# python-dev and python3-dev are needed to compile the youcompleteme vim plugin.
 # vim-gtk enables using the system clipboard from within vim.
 sudo apt-get -qq install -y \
   build-essential \
@@ -19,6 +19,7 @@ sudo apt-get -qq install -y \
   htop \
   nodejs \
   npm \
+  python-dev \
   python3-dev \
   python3-pip \
   tilix \
