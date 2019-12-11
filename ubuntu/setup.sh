@@ -12,6 +12,7 @@ sudo apt-get -qq install -y \
   caca-utils \
   ccache \
   cmake \
+  clang-format \
   conky-all \
   curl \
   git \
