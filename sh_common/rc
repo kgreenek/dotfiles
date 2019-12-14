@@ -22,10 +22,11 @@ alias make='PATH=/usr/lib/ccache:$PATH /usr/bin/time make'
 alias ninja='PATH=/usr/lib/ccache:$PATH /usr/bin/time ninja'
 
 # ROS aliases
+# NOTE: The catkin build command already prints detailed timing information.
+alias catkin='PATH=/usr/lib/ccache:$PATH catkin'
 alias catkin_make='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make'
 alias catkin_make_isolated='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make_isolated'
 
-alias initros="source /opt/ros/kinetic/setup.sh"
-alias initws="source install_isolated/setup.sh"
-alias cminstall="catkin_make_isolated --install --use-ninja"
-alias cmclean="[ -d build_isolated ] && rm -rf build_isolated"
+alias initroskinetic="source /opt/ros/kinetic/setup.sh"
+alias initrosmelodic="source /opt/ros/melodic/setup.sh"
+alias initrosws="source devel/setup.sh"
