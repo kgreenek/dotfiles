@@ -59,14 +59,9 @@ plugins=(
 
 source "$ZSH/oh-my-zsh.sh"
 
-# Enable vim bindings.
-bindkey -v
-
 # Bind "jj" to exit edit mode.
 bindkey 'jj' vi-cmd-mode
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 [ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
 source "$dir/../sh_common/rc"
-
-export PATH="$HOME/.cargo/bin:$PATH"
