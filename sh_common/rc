@@ -22,6 +22,8 @@ alias make='PATH=/usr/lib/ccache:$PATH /usr/bin/time make'
 alias ninja='PATH=/usr/lib/ccache:$PATH /usr/bin/time ninja'
 
 # ROS aliases
+export CATKIN_SHELL=$(basename "${SHELL}")
+
 # NOTE: The catkin build command already prints detailed timing information.
 alias catkin='PATH=/usr/lib/ccache:$PATH catkin'
 alias catkin_make='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make'
