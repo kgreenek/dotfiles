@@ -24,7 +24,11 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status != 'unchanged' || a:info.force
-    !./install.py --ninja --clang-completer --clangd-completer --rust-completer
+    !./install.py
+      \ --ninja
+      \ --clang-completer
+      \ --clangd-completer
+      \ --rust-completer
   endif
 endfunction
 
@@ -82,6 +86,13 @@ let g:ycm_clangd_uses_ycmd_caching=0
 " startify settings
 " Automatically save loaded session on exit.
 let g:startify_session_persistence=1
+let g:startify_lists = [
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \ ]
 
 " vim-clang-format settings
 " Disabled for now, since projects should specify their own .clang-format
@@ -89,8 +100,6 @@ let g:startify_session_persistence=1
 "let g:clang_format#code_style="google"
 "let g:clang_format#style_options={
 "  \ "AllowShortIfStatementsOnASingleLine" : "true",
-"  \ "DerivePointerAlignment" : "false",
-"  \ "PointerAlignment" : "Right",
 "  \ "Standard" : "C++11",
 "  \ "ColumnLimit" : "100" }
 autocmd FileType c,cpp,objc nnoremap <C-k> :<C-u>ClangFormat<CR>
