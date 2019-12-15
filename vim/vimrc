@@ -14,7 +14,7 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status != 'unchanged' || a:info.force
-    !./install.py --clangd-completer --rust-completer --ts-completer
+    !./install.py --clang-completer --rust-completer --ts-completer
   endif
 endfunction
 
@@ -27,9 +27,10 @@ Plug 'bling/vim-airline'
 Plug 'cstrahan/vim-capnp'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
-Plug 'grailbio/bazel-compilation-database'
+"Plug 'grailbio/bazel-compilation-database'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
+Plug 'kgreenek/vim-ros-ycm'
 Plug 'rhysd/vim-clang-format', { 'for': 'cpp' }
 Plug 'rust-lang/rust.vim'
 Plug 'tikhomirov/vim-glsl'
@@ -57,7 +58,7 @@ let g:airline_left_sep="\uE0D2"
 let g:airline_right_sep="\uE0D4"
 
 " YouCompleteMe settings
-map <C-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <C-j> :YcmCompleter GoTo<CR>
 " Prevent YouCompleteMe from showing a warning every time it loads
 " .ycm_extra_conf.py.
 let g:ycm_confirm_extra_conf=0
