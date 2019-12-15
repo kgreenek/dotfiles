@@ -29,4 +29,4 @@ alias catkin_make_isolated='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make
 
 alias initroskinetic="source /opt/ros/kinetic/setup.sh"
 alias initrosmelodic="source /opt/ros/melodic/setup.sh"
-alias initrosws="source devel/setup.sh"
+alias initrosws="source install/setup.sh"
