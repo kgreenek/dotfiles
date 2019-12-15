@@ -8,13 +8,23 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+function! BuildFZF(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status != 'unchanged' || a:info.force
+    !./install --key-bindings --completion --no-update-rc
+  endif
+endfunction
+
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status != 'unchanged' || a:info.force
-    !./install.py --clang-completer --rust-completer --ts-completer
+    !./install.py --ninja --clang-completer --clangd-completer --rust-completer
   endif
 endfunction
 
@@ -27,10 +37,11 @@ Plug 'bling/vim-airline'
 Plug 'cstrahan/vim-capnp'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
-"Plug 'grailbio/bazel-compilation-database'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+"Plug 'grailbio/bazel-compilation-database' " Conflict: vim-ros-ycm.
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': function('BuildFZF') }
 Plug 'junegunn/fzf.vim'
 Plug 'kgreenek/vim-ros-ycm'
+Plug 'mhinz/vim-startify'
 Plug 'rhysd/vim-clang-format', { 'for': 'cpp' }
 Plug 'rust-lang/rust.vim'
 Plug 'tikhomirov/vim-glsl'
@@ -67,6 +78,10 @@ let g:ycm_autoclose_preview_window_after_completion=1
 " Recommended settings from: https://clang.llvm.org/extra/clangd/Installation.html
 " Let clangd fully control code completion.
 let g:ycm_clangd_uses_ycmd_caching=0
+
+" startify settings
+" Automatically save loaded session on exit.
+let g:startify_session_persistence=1
 
 " vim-clang-format settings
 " Disabled for now, since projects should specify their own .clang-format
