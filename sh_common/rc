@@ -28,6 +28,8 @@ export CATKIN_SHELL=$(basename "${SHELL}")
 alias catkin='PATH=/usr/lib/ccache:$PATH catkin'
 alias catkin_make='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make'
 alias catkin_make_isolated='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make_isolated'
+alias rosrun='/usr/bin/time rosrun'
+alias roslaunch='/usr/bin/time roslaunch'
 
 alias initroskinetic="source /opt/ros/kinetic/setup.sh"
 alias initrosmelodic="source /opt/ros/melodic/setup.sh"
