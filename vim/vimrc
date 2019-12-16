@@ -24,11 +24,7 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status != 'unchanged' || a:info.force
-    !./install.py
-      \ --ninja
-      \ --clang-completer
-      \ --clangd-completer
-      \ --rust-completer
+    !./install.py --ninja --clang-completer --rust-completer
   endif
 endfunction
 
