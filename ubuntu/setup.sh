@@ -25,5 +25,5 @@ sudo apt-get -qq install -y \
   python3-pip \
   tilix \
   time \
-  vim \
   vim-gtk \
+  zsh \
