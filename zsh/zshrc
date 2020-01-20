@@ -64,4 +64,10 @@ bindkey 'jj' vi-cmd-mode
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 [ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
+
+# ROS aliases
+alias initroskinetic="source /opt/ros/kinetic/setup.zsh"
+alias initrosmelodic="source /opt/ros/melodic/setup.zsh"
+alias initrosws="source install/setup.zsh"
+
 source "$dir/../sh_common/rc"
