@@ -19,6 +19,7 @@ sudo apt-get -qq install -y \
   git \
   highlight \
   htop \
+  ninja-build \
   python-dev \
   python3-dev \
   python3-pip \
