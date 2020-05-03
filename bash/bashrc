@@ -3,5 +3,10 @@ source "$dir/prompt.sh"
 
 [ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
 
+# ROS aliases
+alias initroskinetic="source /opt/ros/kinetic/setup.bash"
+alias initrosmelodic="source /opt/ros/melodic/setup.bash"
+alias initrosws="source install/setup.bash"
+
 # NOTE: This also sets dir, so do it after setting the prompt above.
 source "$dir/../sh_common/rc"

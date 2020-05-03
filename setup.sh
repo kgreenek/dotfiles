@@ -8,6 +8,10 @@ fi
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
+# So we can find our user-installed version of pip3 on the first run.
+export PATH="~/.local/bin:$PATH"
+
+
 echo "--Creating dirs"
 mkdir -p ~/bin
 mkdir -p ~/src
