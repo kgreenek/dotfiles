@@ -4,7 +4,10 @@ dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 # See: https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
 source "$dir/vte_fix.sh"
 
+export GOPATH=$HOME/go
+
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export EDITOR=vim
@@ -30,3 +33,7 @@ alias catkin_make='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make'
 alias catkin_make_isolated='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make_isolated'
 alias rosrun='/usr/bin/time rosrun'
 alias roslaunch='/usr/bin/time roslaunch'
+
+alias initroskinetic="source /opt/ros/kinetic/setup.sh"
+alias initrosmelodic="source /opt/ros/melodic/setup.sh"
+alias initrosws='source $(catkin locate)/install/setup.sh'
