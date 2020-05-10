@@ -36,14 +36,14 @@ Plug 'bfrg/vim-cpp-modern'
 Plug 'bling/vim-airline'
 Plug 'cstrahan/vim-capnp'
 Plug 'francoiscabrol/ranger.vim'
-Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
-"Plug 'grailbio/bazel-compilation-database' " Conflict: vim-ros-ycm.
+Plug 'google/vim-codefmt'  " Depends: vim-maktaba
+Plug 'google/vim-glaive'
+Plug 'google/vim-maktaba'
+Plug 'grailbio/bazel-compilation-database' " Conflicts: vim-ros-ycm
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': function('BuildFZF') }
 Plug 'junegunn/fzf.vim'
-Plug 'kgreenek/vim-ros-ycm'
+"Plug 'kgreenek/vim-ros-ycm'
 Plug 'mhinz/vim-startify'
-Plug 'rhysd/vim-clang-format', { 'for': 'cpp' }
-Plug 'rust-lang/rust.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -53,6 +53,27 @@ Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 call plug#end()
 
 filetype plugin indent on
+
+" vim-codefmt settings
+if exists("glaive#Install")
+  call glaive#Install()
+endif
+
+" Bind ctrl-k to format the file, depending on the filetype of the current buffer.
+augroup codefmt_bindings
+  " NOTE: Range formatting is not supported for buildifier.
+  autocmd FileType bzl nnoremap <buffer> <C-k> :FormatCode buildifier<CR>
+  autocmd FileType bzl vnoremap <buffer> <C-k> :FormatLines buildifier<CR>
+
+  autocmd FileType c,cpp,objc,proto,javascript,arduino nnoremap <buffer> <C-k> :FormatCode clang-format<CR>
+  autocmd FileType c,cpp,objc,proto,javascript,arduino vnoremap <buffer> <C-k> :FormatLines clang-format<CR>
+
+  autocmd FileType python nnoremap <buffer> <C-k> :FormatCode yapf<CR>
+  autocmd FileType python vnoremap <buffer> <C-k> :FormatLines yapf<CR>
+
+  autocmd FileType rust nnoremap <buffer> <C-k> :FormatCode rustfmt<CR>
+  autocmd FileType rust vnoremap <buffer> <C-k> :FormatLines rustfmt<CR>
+augroup END
 
 " Ranger settings
 " open ranger when vim open a directory
@@ -90,35 +111,8 @@ let g:startify_lists = [
   \ { 'type': 'commands',  'header': ['   Commands']       },
   \ ]
 
-" vim-clang-format settings
-" Disabled for now, since projects should specify their own .clang-format
-" files and we don't want to over-rule the project-specific settings.
-"let g:clang_format#code_style="google"
-"let g:clang_format#style_options={
-"  \ "AllowShortIfStatementsOnASingleLine" : "true",
-"  \ "Standard" : "C++11",
-"  \ "ColumnLimit" : "100" }
-autocmd FileType c,cpp,objc nnoremap <C-k> :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <C-k> :ClangFormat<CR>
-
-" rust settings
-autocmd FileType rust nnoremap <C-k> :<C-u>RustFmt<CR>
-" NOTE: RustFmtRange seems to be broken right now, so this doesn't work.
-" See: https://github.com/rust-lang/rust.vim/issues/156
-autocmd FileType rust vnoremap <C-k> :'<,'>RustFmtRange<CR>
-
-" Yapf settings
-autocmd FileType python nnoremap <C-k> :<C-u>YAPF<CR>
-autocmd FileType python vnoremap <C-k> :'<,'>YAPF<CR>
-
 " Use grip with vim-markdown-preview
 let vim_markdown_preview_github=1
-
-" netrw settings (vim default file browser)
-" Default to tree-view.
-let g:netrw_liststyle=3
-" Hide banner by default (press "I" to toggle it).
-let g:netrw_banner=0
 
 " Create directories if they don't exist.
 if !isdirectory($HOME."/.vim/bak")
@@ -146,7 +140,7 @@ set undofile
 " Tell vim where to look for tags file. It'll look in the current directory,
 " then the parent directory, and up until it hits HOME (that's what the
 " semicolon means).
-set tags=./tags,tags;$HOME
+"set tags=./tags,tags;$HOME
 
 " Enables yanking into the system clipboard, so you can "yy" to yank the
 " current line, and then paste it to another application.
@@ -218,9 +212,10 @@ set backspace=indent,eol,start
 set hidden
 
 " This controls how often the gitgutter plugin's diff markers are updated.
+" By default it is every 4 seconds. Set it to every 100 milliseconds.
 set updatetime=100
 
-" Jumps to search word as you type.
+" Jump to search word as you type.
 set incsearch
 
 " Map ctrl-h to move to the previous buffer ":bp", and ctrl-l to move to the
