@@ -3,7 +3,7 @@ set -e
 fzf_install_dir="${HOME}/.fzf"
 
 if [ -d $fzf_install_dir ]; then
-  echo "INFO: fzf already cloned. Not installing..."
+  echo "INFO: fzf already cloned. Skipping..."
 else
   echo "INFO: Cloning fzf to ${fzf_install_dir}..."
   git clone -q --depth=1 https://github.com/junegunn/fzf.git "${fzf_install_dir}"

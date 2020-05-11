@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 if [[ -d $HOME/src/ryanoasis/nerd-fonts ]]; then
-  echo "INFO: nerd fonts already cloned. Not installing..."
+  echo "INFO: nerd fonts already cloned. Skipping..."
 else
   echo "INFO: Cloning nerd-fonts to $HOME/src/ryanoasis/nerd-fonts (this may take a while)..."
   mkdir -p $HOME/src/ryanoasis

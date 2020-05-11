@@ -11,7 +11,6 @@ dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 # So we can find our user-installed version of pip3 on the first run.
 export PATH="~/.local/bin:$PATH"
 
-
 echo "--Creating dirs"
 mkdir -p ~/bin
 mkdir -p ~/src
@@ -24,6 +23,9 @@ $dir/pip/setup.sh
 
 echo "--Installing rust and cargo packages"
 $dir/rust/setup.sh
+
+echo "--Installing bazel"
+$dir/bazel/setup.sh
 
 echo "--Installing fzf"
 $dir/fzf/setup.sh
