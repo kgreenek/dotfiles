@@ -10,6 +10,8 @@ fi
 
 PATH="${PATH}:${HOME}/.cargo/bin"
 
+rustup component add rustfmt
+
 if ! [ -x "$(command -v fd)" ]; then
   echo "INFO: Installing fd..."
   cargo install --quiet fd-find
