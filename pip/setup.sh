@@ -24,3 +24,4 @@ hash -d pip3
 pip3 install -q --user \
   grip \
   ranger-fm \
+  yapf \
