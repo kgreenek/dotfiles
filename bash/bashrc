@@ -8,5 +8,12 @@ alias initroskinetic="source /opt/ros/kinetic/setup.bash"
 alias initrosmelodic="source /opt/ros/melodic/setup.bash"
 alias initrosws="source install/setup.bash"
 
+# User completion files
+if [ ! -z "$(ls ~/.bash_completion.d)" ]; then
+  for comp_file in ~/.bash_completion.d/* ; do
+    source $comp_file
+  done
+fi
+
 # NOTE: This also sets dir, so do it after setting the prompt above.
 source "$dir/../sh_common/rc"

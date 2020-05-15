@@ -51,6 +51,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  bazel
   colored-man-pages
   git
   zsh-autosuggestions
@@ -69,5 +70,10 @@ dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 alias initroskinetic="source /opt/ros/kinetic/setup.zsh"
 alias initrosmelodic="source /opt/ros/melodic/setup.zsh"
 alias initrosws="source install/setup.zsh"
+
+# User completions
+fpath[1,0]=~/.zsh/completion/
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
 source "$dir/../sh_common/rc"
