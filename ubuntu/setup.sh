@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+echo "INFO: Updating apt sources (may take a while)..."
 sudo apt-get -qq update
 
 # caca-utils gives us the img2txt binary so ranger can generate ascii image previews.
@@ -29,7 +30,9 @@ sudo apt-get -qq install -y \
   zsh \
 
 # Install chrome
-if [ ! -f "/etc/apt/sources.list.d/google-chrome.list" ]; then
+if [ ! -z "$(dpkg -s google-chrome-stable)" ]; then
+  echo "INFO: Chrome already installed. Skipping..."
+else
   echo "INFO: Installing chrome from PPA..."
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
