@@ -77,12 +77,9 @@ augroup codefmt_bindings
 augroup END
 
 " headerguard settings
-function! Relpath(filename)
-  return substitute(a:filename, getcwd() . "/" , "", "")
-endfunction
-
 function! g:HeaderguardName()
-  return toupper(substitute(Relpath(expand("%:p")), "[^0-9a-zA-Z_]", "_", "g")) . "_"
+  let relpath = substitute(expand("%:p"), getcwd() . "/" , "", "")
+  return toupper(substitute(a:relpath, "[^0-9a-zA-Z_]", "_", "g")) . "_"
 endfunction
 
 function! g:HeaderguardLine3()
