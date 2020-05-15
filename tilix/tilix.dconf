@@ -25,6 +25,7 @@ highlight-colors-set=false
 use-theme-colors=false
 bold-color-set=false
 font='Cousine Nerd Font 10'
+terminal-bell='icon'
 background-color='#000000'
 background-transparency-percent=28
 dim-transparency-percent=17
