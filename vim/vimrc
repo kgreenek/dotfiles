@@ -90,7 +90,7 @@ let g:airline_left_sep="\uE0D2"
 let g:airline_right_sep="\uE0D4"
 
 " YouCompleteMe settings
-map <C-j> :YcmCompleter GoTo<CR>
+map <C-j> :YcmCompleter GoToImprecise<CR>
 " Prevent YouCompleteMe from showing a warning every time it loads
 " .ycm_extra_conf.py.
 let g:ycm_confirm_extra_conf=0
