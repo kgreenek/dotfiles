@@ -79,7 +79,7 @@ augroup END
 " headerguard settings
 function! g:HeaderguardName()
   let relpath = substitute(expand("%:p"), getcwd() . "/" , "", "")
-  return toupper(substitute(a:relpath, "[^0-9a-zA-Z_]", "_", "g")) . "_"
+  return toupper(substitute(relpath, "[^0-9a-zA-Z_]", "_", "g")) . "_"
 endfunction
 
 function! g:HeaderguardLine3()
