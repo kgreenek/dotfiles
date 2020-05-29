@@ -1,24 +1,9 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 
-local function scandir(directory)
-	 pfile = io.popen('ls -a "'..directory..'"')
-	local files = pfile:lines()
-	:close()
-    return files
-end
-
-local function disk_io_graphs()
-	local dirs = {}
-	dirs[1] = '/'
-	local i = 1
-	for filename in scandir('/media/kevin') do
-		i = i + 1
-		dirs[i] = filename
-	end
-	i = 0
-	for dir in dirs do
-		i = i + 1
-	end
+local function substitute(s, t)
+	return s:gsub('(#%b{})', function (w)
+		return t[w:sub(3, -2)] or w
+	end)
 end
 
 local function column(line, col)
@@ -31,18 +16,74 @@ local function column(line, col)
 end
 
 local function default_net_device()
-	-- Guesses the default net device by assuming the first route is for that device.
-	-- The first route is always assumed to be the default route.
+	-- Guess the default net device by assuming the first route is for that device.
+	-- The first route is assumed to be the default route.
     local pfile = io.popen('ip route')
 	local net_device = column(pfile:lines()(0), 5)
 	pfile:close()
 	return net_device
 end
 
-local function substitute_custom_variables(s, t)
-	return s:gsub('(#%b{})', function (w)
-		return t[w:sub(3, -2)] or w
-	end)
+-- TODO: Find a way for this to update when devices are mounted / unmounted.
+local function diskiograph_all(total_width, diskiograph_height, color1, color2)
+	local mnt_dir_paths = {}
+	local mnt_dir_names = {}
+	local mnt_dir_devices = {}
+	pfile = io.popen('findmnt -l -o "TARGET,SOURCE" | grep -e "^/ " -e "^/media"')
+	local i = 0
+	for findmnt_line in pfile:lines() do
+		i = i + 1
+		local mnt_dir_path = column(findmnt_line, 1)
+		local mnt_dir_device = column(findmnt_line, 2)
+		local mnt_dir_name = mnt_dir_path:match("^.+/(.+)$")
+		if mnt_dir_name == nil then mnt_dir_name = '/' end
+		mnt_dir_paths[i] = mnt_dir_path
+		mnt_dir_names[mnt_dir_path] = mnt_dir_name
+		mnt_dir_devices[mnt_dir_path] = mnt_dir_device
+	end
+	pfile:close()
+	local disks_str = ""
+	for i, mnt_dir_path in ipairs(mnt_dir_paths) do
+		mnt_dir_name = mnt_dir_names[mnt_dir_path]
+		mnt_dir_device = mnt_dir_devices[mnt_dir_path]
+		disks_str = disks_str .. substitute([[
+${font sans-serif:normal:size=8}#{mnt_dir_name}${goto 100}${fs_used #{mnt_dir_path}} / ${fs_size #{mnt_dir_path}}${alignr}${diskio #{mnt_dir_device}}
+${fs_bar #{mnt_dir_path}}
+${diskiograph #{mnt_dir_device} #{diskiograph_height},#{total_width} #{color1} #{color2} -t}
+]], {
+			mnt_dir_name = mnt_dir_name,
+			mnt_dir_path = mnt_dir_path,
+			mnt_dir_device = mnt_dir_device,
+			total_width = total_width,
+			diskiograph_height = diskiograph_height,
+			color1 = color1,
+			color2 = color2,
+		})
+	end
+	return disks_str
+end
+
+local function cpugraph_all(total_width, cpugraph_height, padding, color1, color2)
+	pfile = io.popen('nproc --all')
+	local num_cpus = tonumber(pfile:lines()(0))
+	pfile:close()
+	local columns = 2
+	if num_cpus > 12 then columns = 4
+	elseif num_cpus > 8 then columns = 3
+	end
+	local total_padding = padding * (columns - 1)
+	local cpugraph_width = math.floor((total_width - total_padding) / columns)
+	local cpus_str = ""
+	for i = 1,num_cpus do
+		cpus_str = cpus_str .. "${cpugraph cpu" .. i .. " " .. cpugraph_height .. "," ..
+			cpugraph_width .. " " .. color1 .. " " .. color2 .. " -t}"
+		if i % columns == 0 then
+			cpus_str = cpus_str .. '\n'
+		else
+			cpus_str = cpus_str .. "${offset " .. padding .. "}"
+		end
+	end
+	return cpus_str
 end
 
 conky.config = {
@@ -82,20 +123,22 @@ conky.config = {
 };
 
 custom_variables = {
-	color0 = 'C4A000',  -- orange
-	color1 = 'FCE94F',  -- yellow
-	color2 = '33E2E2',  -- teal
-	color3 = '89E233',  -- green
-	color4 = '06989A',  -- dark teal
-	color5 = 'AD7FA8',  -- pink
-	color6 = '729ECF',  -- purple
-	color7 = 'EF2828',  -- bright red
-	color8 = 'CCCCCC',  -- grey
+	orange = 'C4A000',  -- orange
+	yellow = 'FCE94F',  -- yellow
+	teal = '33E2E2',  -- teal
+	green = '89E233',  -- green
+	dark_teal = '06989A',  -- dark teal
+	pink = 'AD7FA8',  -- pink
+	purple = '729ECF',  -- purple
+	bright_red = 'EF2828',  -- bright red
+	grey = 'CCCCCC',  -- grey
 
-	net_device = default_net_device()
+	net_device = default_net_device(),
+	all_cpu_graphs = cpugraph_all(300, 30, 20, '33E2E2', 'FCE94F'),
+	all_diskio_graphs = diskiograph_all(300, 30, 'CCCCCC', 'FCE94F'),
 }
 
-conky.text = substitute_custom_variables([[
+conky.text = substitute([[
 ${time %H:%M:%S}${alignr}${time %d-%m-%y}
 ${voffset -16}${font sans-serif:bold:size=18}${alignc}${time %H:%M}${font}
 ${voffset 4}${alignc}${time %A %B %d, %Y}
@@ -109,14 +152,7 @@ Processes: ${alignr} ${execi 1000 ps aux | wc -l}
 
 ${font sans-serif:bold:size=10}CPU ${hr 2}
 ${font sans-serif:normal:size=8}${execi 1000 grep model /proc/cpuinfo | cut -d : -f2 | tail -1 | sed 's/\s//'}
-${cpugraph cpu1 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu9  30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu17 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu25 30,60 33E2E2 FCE94F -t}
-${cpugraph cpu2 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu10 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu18 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu26 30,60 33E2E2 FCE94F -t}
-${cpugraph cpu3 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu11 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu19 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu27 30,60 33E2E2 FCE94F -t}
-${cpugraph cpu4 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu12 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu20 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu28 30,60 33E2E2 FCE94F -t}
-${cpugraph cpu5 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu13 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu21 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu29 30,60 33E2E2 FCE94F -t}
-${cpugraph cpu6 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu14 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu22 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu30 30,60 33E2E2 FCE94F -t}
-${cpugraph cpu7 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu15 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu23 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu31 30,60 33E2E2 FCE94F -t}
-${cpugraph cpu8 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu16 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu24 30,60 33E2E2 FCE94F -t}${offset 20}${cpugraph cpu32 30,60 33E2E2 FCE94F -t}
+#{all_cpu_graphs}
 ${font sans-serif:bold:size=10}MEMORY ${hr 2}
 ${font sans-serif:normal:size=8}RAM ${alignc} ${mem} / ${memmax} ${alignr} ${memperc}%
 ${membar}
@@ -132,18 +168,13 @@ ${font sans-serif:normal:size=8}CPU 0: ${hwmon 0 temp 1}°C
 ${font sans-serif:normal:size=8}CPU 1: ${hwmon 1 temp 1}°C
 ${font sans-serif:normal:size=8}GPU: ${nvidia temp}°C
 
-${font sans-serif:bold:size=10}DISK USAGE ${hr 2}
-${font sans-serif:normal:size=8}/${goto 100}${fs_used /} / ${fs_size /}${alignr}${diskio /dev/nvme0n1p1}
-${fs_bar /}
-${diskiograph /dev/nvme0n1p1 30,300 CCCCCC FCE94F -t}
-${font sans-serif:normal:size=8}/m/k/data${goto 100}${fs_used /media/kevin/data} / ${fs_size /media/kevin/data}${alignr}${diskio /dev/nvme1n1}
-${fs_bar /media/kevin/data}
-${diskiograph /dev/nvme1n1 30,300 CCCCCC FCE94F -t}
 ${font Ubuntu:bold:size=10}NETWORK ${hr 2}
 ${font sans-serif:normal:size=8}Local IPs:${alignr}External IP:
 ${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}  ${alignr}${execi 1000  wget -q -o /dev/null -O- http://ipecho.net/plain; echo}
 ${font sans-serif:normal:size=8}Down: ${downspeed #{net_device}}${alignr}Up: ${upspeed #{net_device}}
 ${downspeedgraph #{net_device} 80,140 AD7FA8 FCE94F -t}${alignr}${upspeedgraph #{net_device} 80,140 AD7FA8 FCE94F -t}
+${font sans-serif:bold:size=10}DISK USAGE ${hr 2}
+#{all_diskio_graphs}
 ${font sans-serif:bold:size=10}TOP PROCESSES ${hr 2}
 ${font sans-serif:normal:size=8}Name $alignr PID   CPU%   MEM%${font sans-serif:normal:size=8}
 ${top name 1} ${alignr} ${top pid 1} ${top cpu 1}% ${top mem 1}%
