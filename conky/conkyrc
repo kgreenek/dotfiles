@@ -135,7 +135,7 @@ custom_variables = {
 
 	net_device = default_net_device(),
 	all_cpu_graphs = cpugraph_all(300, 30, 20, '33E2E2', 'FCE94F'),
-	all_diskio_graphs = diskiograph_all(300, 30, 'CCCCCC', 'FCE94F'),
+	all_diskio_graphs = diskiograph_all(300, 20, 'CCCCCC', 'FCE94F'),
 }
 
 conky.text = substitute([[
