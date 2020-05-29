@@ -20,6 +20,7 @@ sudo apt-get -qq install -y \
   git \
   highlight \
   htop \
+  lm-sensors \
   ninja-build \
   python-dev \
   python3-dev \
