@@ -47,11 +47,15 @@ $dir/ranger/setup.sh
 echo "--Setting up tilix config"
 $dir/tilix/setup.sh
 
+echo "--Setting up conky config"
+$dir/conky/setup.sh
+
 echo ""
 echo "SUCCESS!"
 echo ""
 
-echo "* Install conky config by running ./conky/setup.sh"
+echo "Manual steps:"
+echo "* Set up conky to start at boot by adding /usr/bin/conky to Startup Applications"
 echo "* Set up lm-sensors for your hardware by running sensors-detect"
 echo "* Set tilix as default terminal emulator on Ubuntu with the following command:"
 echo "    sudo update-alternatives --config x-terminal-emulator"
