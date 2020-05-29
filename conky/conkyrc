@@ -1,5 +1,50 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 
+local function scandir(directory)
+	 pfile = io.popen('ls -a "'..directory..'"')
+	local files = pfile:lines()
+	:close()
+    return files
+end
+
+local function disk_io_graphs()
+	local dirs = {}
+	dirs[1] = '/'
+	local i = 1
+	for filename in scandir('/media/kevin') do
+		i = i + 1
+		dirs[i] = filename
+	end
+	i = 0
+	for dir in dirs do
+		i = i + 1
+	end
+end
+
+local function column(line, col)
+	local i = 0
+	for word in line:gmatch("%S+") do
+		i = i + 1
+		if i == col then return word end
+	end
+	return ""
+end
+
+local function default_net_device()
+	-- Guesses the default net device by assuming the first route is for that device.
+	-- The first route is always assumed to be the default route.
+    local pfile = io.popen('ip route')
+	local net_device = column(pfile:lines()(0), 5)
+	pfile:close()
+	return net_device
+end
+
+local function substitute_custom_variables(s, t)
+	return s:gsub('(#%b{})', function (w)
+		return t[w:sub(3, -2)] or w
+	end)
+end
+
 conky.config = {
 	update_interval = 1,
 	cpu_avg_samples = 2,
@@ -34,6 +79,9 @@ conky.config = {
 	minimum_width = 300,
 	minimum_height = 0,
 	alignment = 'top_right',
+};
+
+custom_variables = {
 	color0 = 'C4A000',  -- orange
 	color1 = 'FCE94F',  -- yellow
 	color2 = '33E2E2',  -- teal
@@ -42,9 +90,12 @@ conky.config = {
 	color5 = 'AD7FA8',  -- pink
 	color6 = '729ECF',  -- purple
 	color7 = 'EF2828',  -- bright red
-};
+	color8 = 'CCCCCC',  -- grey
 
-conky.text = [[
+	net_device = default_net_device()
+}
+
+conky.text = substitute_custom_variables([[
 ${time %H:%M:%S}${alignr}${time %d-%m-%y}
 ${voffset -16}${font sans-serif:bold:size=18}${alignc}${time %H:%M}${font}
 ${voffset 4}${alignc}${time %A %B %d, %Y}
@@ -90,9 +141,9 @@ ${fs_bar /media/kevin/data}
 ${diskiograph /dev/nvme1n1 30,300 CCCCCC FCE94F -t}
 ${font Ubuntu:bold:size=10}NETWORK ${hr 2}
 ${font sans-serif:normal:size=8}Local IPs:${alignr}External IP:
-${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}  ${alignr}${execi 1000  wget -q -O- http://ipecho.net/plain; echo}
-${font sans-serif:normal:size=8}Down: ${downspeed enp4s0}${alignr}Up: ${upspeed enp4s0}
-${downspeedgraph enp4s0 80,140 AD7FA8 FCE94F -t}${alignr}${upspeedgraph enp4s0 80,140 AD7FA8 FCE94F -t}
+${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}  ${alignr}${execi 1000  wget -q -o /dev/null -O- http://ipecho.net/plain; echo}
+${font sans-serif:normal:size=8}Down: ${downspeed #{net_device}}${alignr}Up: ${upspeed #{net_device}}
+${downspeedgraph #{net_device} 80,140 AD7FA8 FCE94F -t}${alignr}${upspeedgraph #{net_device} 80,140 AD7FA8 FCE94F -t}
 ${font sans-serif:bold:size=10}TOP PROCESSES ${hr 2}
 ${font sans-serif:normal:size=8}Name $alignr PID   CPU%   MEM%${font sans-serif:normal:size=8}
 ${top name 1} ${alignr} ${top pid 1} ${top cpu 1}% ${top mem 1}%
@@ -105,4 +156,4 @@ ${top name 7} ${alignr} ${top pid 7} ${top cpu 7}% ${top mem 7}%
 ${top name 8} ${alignr} ${top pid 8} ${top cpu 8}% ${top mem 8}%
 ${top name 9} ${alignr} ${top pid 9} ${top cpu 9}% ${top mem 9}%
 ${top name 10} ${alignr} ${top pid 10} ${top cpu 10}% ${top mem 10}%
-]];
+]], custom_variables)
