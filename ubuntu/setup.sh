@@ -52,6 +52,7 @@ else
   echo "INFO: Installing nodejs..."
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  echo "yarn" > "${NVM_DIR}/default-packages"
   nvm install node
   nvm use node
 fi
