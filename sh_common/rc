@@ -37,3 +37,8 @@ alias roslaunch='/usr/bin/time roslaunch'
 alias initroskinetic="source /opt/ros/kinetic/setup.sh"
 alias initrosmelodic="source /opt/ros/melodic/setup.sh"
 alias initrosws='source $(catkin locate)/install/setup.sh'
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

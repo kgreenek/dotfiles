@@ -40,3 +40,18 @@ else
   sudo apt-get -qq update
   sudo apt-get -qq install -y google-chrome-stable
 fi
+
+if [ -d "${HOME}/.nvm" ]; then
+  echo "INFO: nvm / nodejs already installed. Skipping..."
+else
+  echo "INFO: Installing nvm..."
+  # Set PROFILE explicitly to prevent it from adding lines to our bashrc.
+  # We do that ourselves in sh_common/rc.
+  curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | PROFILE='/dev/null' bash
+
+  echo "INFO: Installing nodejs..."
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  nvm install node
+  nvm use node
+fi
