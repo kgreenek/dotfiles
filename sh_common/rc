@@ -20,6 +20,9 @@ alias lla='ls -la'
 alias lt='ls --tree'
 alias ltd='ls --tree --depth'
 
+# Make ripgrep search hidden directories by default.
+alias rg='rg --hidden'
+
 alias cmake='PATH=/usr/lib/ccache:$PATH /usr/bin/time cmake'
 alias make='PATH=/usr/lib/ccache:$PATH /usr/bin/time make'
 alias ninja='PATH=/usr/lib/ccache:$PATH /usr/bin/time ninja'
