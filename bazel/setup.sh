@@ -4,7 +4,7 @@ set -e
 # Install bazelisk
 # NOTE: Only works on linux.
 bazelisk_bin="${HOME}/bin/bazel"
-bazelisk_url="https://github.com/bazelbuild/bazelisk/releases/download/v1.4.0/bazelisk-linux-amd64"
+bazelisk_url="https://github.com/bazelbuild/bazelisk/releases/download/v1.5.0/bazelisk-linux-amd64"
 if [ -f "${bazelisk_bin}" ]; then
   echo "INFO: bazelisk already installed. Skipping..."
 else
