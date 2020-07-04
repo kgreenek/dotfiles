@@ -6,7 +6,7 @@ fi
 sensors_output="$(sensors)"
 temps_str="$(echo "${sensors_output}" | grep "^Core")"
 if [ -z "${temps_str}" ]; then
-  temps_str="$("${sensors_output}" | grep -e "^temp" | grep -v "N/A")"
+  temps_str="$(echo "${sensors_output}" | grep -e "^temp" | grep -v "N/A")"
 fi
 if [ -z "${temps_str}" ]; then
   echo "CPU temps not found"
