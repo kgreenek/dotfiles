@@ -12,6 +12,13 @@ PATH="${PATH}:${HOME}/.cargo/bin"
 
 rustup component add rustfmt
 
+if ! [ -x "$(command -v dust)" ]; then
+  echo "INFO: Installing dust..."
+  cargo install --quiet du-dust
+else
+  echo "INFO: dust already installed. Skipping..."
+fi
+
 if ! [ -x "$(command -v fd)" ]; then
   echo "INFO: Installing fd..."
   cargo install --quiet fd-find
