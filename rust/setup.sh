@@ -12,6 +12,13 @@ PATH="${PATH}:${HOME}/.cargo/bin"
 
 rustup component add rustfmt
 
+if ! [ -x "$(command -v diskonaut)" ]; then
+  echo "INFO: Installing diskonaut..."
+  cargo install --quiet diskonaut
+else
+  echo "INFO: disonaut already installed. Skipping..."
+fi
+
 if ! [ -x "$(command -v dust)" ]; then
   echo "INFO: Installing dust..."
   cargo install --quiet du-dust
