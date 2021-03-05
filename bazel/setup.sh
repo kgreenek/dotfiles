@@ -35,7 +35,7 @@ else
   cd "${buildtools_src_dir}"
   bazel build //buildifier --noshow_progress &>/dev/null
   echo "INFO: Installing buildifier to ${buildifier_bin}..."
-  cp bazel-bin/buildifier/linux_amd64_stripped/buildifier "${buildifier_bin}"
+  cp bazel-bin/buildifier/buildifier_/buildifier "${buildifier_bin}"
   cd - &>/dev/null
 fi
 
