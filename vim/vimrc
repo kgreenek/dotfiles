@@ -50,7 +50,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': function('BuildYCM') }
 call plug#end()
 
 filetype plugin indent on
