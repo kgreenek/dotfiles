@@ -25,6 +25,7 @@ sudo apt-get -qq install -y \
   python-dev \
   python3-dev \
   python3-pip \
+  shellcheck \
   tilix \
   time \
   vim-gtk \
