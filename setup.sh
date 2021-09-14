@@ -55,7 +55,6 @@ echo "SUCCESS!"
 echo ""
 
 echo "Manual steps:"
-echo "* Set up conky to start at boot by adding /usr/bin/conky to Startup Applications"
 echo "* Set up lm-sensors for your hardware by running sensors-detect"
 echo "* Set tilix as default terminal emulator on Ubuntu with the following command:"
 echo "    sudo update-alternatives --config x-terminal-emulator"
