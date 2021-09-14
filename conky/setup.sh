@@ -21,3 +21,13 @@ else
   fi
   ln -sf "$dir/conkyrc" "${HOME}/.conkyrc"
 fi
+
+if [[ -f "${HOME}/.config/autostart/conky.desktop" && \
+    ! -L "${HOME}/.config/autostart/conky.desktop" ]]; then
+  echo "WARNING: "${HOME}/.config/autostart/conky.desktop" already exists. Skipping..."
+else
+  if [[ -L "${HOME}/.config/autostart/conky.desktop" ]]; then
+    echo "INFO: Over-writing existing symlink ${HOME}/.config/autostart/conky.desktop"
+  fi
+  ln -sf "$dir/conky.desktop" "${HOME}/.config/autostart/conky.desktop"
+fi
