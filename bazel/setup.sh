@@ -33,7 +33,7 @@ else
   fi
   echo "INFO: Building buildifier..."
   cd "${buildtools_src_dir}"
-  bazel build //buildifier --noshow_progress &>/dev/null
+  "${bazelisk_bin}" build //buildifier --noshow_progress &>/dev/null
   echo "INFO: Installing buildifier to ${buildifier_bin}..."
   cp bazel-bin/buildifier/buildifier_/buildifier "${buildifier_bin}"
   cd - &>/dev/null
