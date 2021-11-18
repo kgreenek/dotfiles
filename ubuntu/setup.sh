@@ -87,3 +87,5 @@ else
   nvm install node
   nvm use node
 fi
+
+sudo snap install btop
