@@ -88,4 +88,6 @@ else
   nvm use node
 fi
 
-sudo snap install btop
+sudo snap install \
+  btop \
+  nvim
