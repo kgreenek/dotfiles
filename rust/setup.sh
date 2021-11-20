@@ -12,6 +12,13 @@ PATH="${PATH}:${HOME}/.cargo/bin"
 
 rustup component add rustfmt
 
+if ! [ -x "$(command -v bat)" ]; then
+  echo "INFO: Installing bat..."
+  cargo install --quiet bat
+else
+  echo "INFO: bat already installed. Skipping..."
+fi
+
 if ! [ -x "$(command -v diskonaut)" ]; then
   echo "INFO: Installing diskonaut..."
   cargo install --quiet diskonaut
