@@ -35,7 +35,7 @@ alias catkin='PATH=/usr/lib/ccache:$PATH catkin'
 alias catkin_make='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make'
 alias catkin_make_isolated='PATH=/usr/lib/ccache:$PATH /usr/bin/time catkin_make_isolated'
 alias rosrun='/usr/bin/time rosrun'
-alias roslaunch='/usr/bin/time roslaunch'
+#alias roslaunch='/usr/bin/time roslaunch'
 
 alias initroskinetic="source /opt/ros/kinetic/setup.sh"
 alias initrosmelodic="source /opt/ros/melodic/setup.sh"
@@ -45,3 +45,8 @@ alias initrosws='source $(catkin locate)/install/setup.sh'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Use rg for fzf instead of grep.
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden'
+fi
