@@ -39,6 +39,7 @@ alias rosrun='/usr/bin/time rosrun'
 
 alias initroskinetic="source /opt/ros/kinetic/setup.sh"
 alias initrosmelodic="source /opt/ros/melodic/setup.sh"
+alias initrosnoetic="source /opt/ros/noetic/setup.sh"
 alias initrosws='source $(catkin locate)/install/setup.sh'
 
 # NVM
