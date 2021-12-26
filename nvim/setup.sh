@@ -4,11 +4,22 @@ set -e
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 mkdir -p "$HOME/.config/nvim"
-if [[ -f "$HOME/.config/nvim/init.vim" && ! -L "$HOME/.config/nvim/init.vim" ]]; then
-  echo "WARNING: $HOME/.config/nvim/init.vim already exists. Skipping..."
+mkdir -p "$HOME/.config/nvim/lua"
+
+if [[ -f "$HOME/.config/nvim/init.lua" && ! -L "$HOME/.config/nvim/init.lua" ]]; then
+  echo "WARNING: $HOME/.config/nvim/init.lua already exists. Skipping..."
 else
-  if [[ -L "$HOME/.config/nvim/init.vim" ]]; then
-    echo "INFO: Over-writing existing symlink $HOME/.config/nvim/init.vim"
+  if [[ -L "$HOME/.config/nvim/init.lua" ]]; then
+    echo "INFO: Over-writing existing symlink $HOME/.config/nvim/init.lua"
   fi
-  ln -sf "$dir/init.vim" "$HOME/.config/nvim/init.vim"
+  ln -sf "$dir/init.lua" "$HOME/.config/nvim/init.lua"
+fi
+
+if [[ -d "$HOME/.config/nvim/lua/kgreenek" && ! -L "$HOME/.config/nvim/lua/kgreenek" ]]; then
+  echo "WARNING: $HOME/.config/nvim/lua/kgreenek already exists. Skipping..."
+else
+  if [[ -L "$HOME/.config/nvim/lua/kgreenek" ]]; then
+    echo "INFO: Over-writing existing symlink $HOME/.config/nvim/lua/kgreenek"
+  fi
+  ln -sfn "$dir/lua/kgreenek" "$HOME/.config/nvim/lua/kgreenek"
 fi
