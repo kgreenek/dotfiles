@@ -29,6 +29,7 @@ sudo apt-get -qq install -y \
   tilix \
   time \
   vim-gtk \
+  xsel \
   zsh \
 
 # Install chrome
@@ -71,23 +72,13 @@ else
   sudo usermod -aG docker "${USER}"
 fi
 
-# Install nodejs
-if [ -d "${HOME}/.nvm" ]; then
-  echo "INFO: nvm / nodejs already installed. Skipping..."
+# Install bazel via apt just for up-to-date bash completions. We manage bazel using bazelisk.
+if [ ! -z "$(dpkg -s bazel)" ]; then
+  echo "INFO: bazel apt package already installed. Skipping..."
 else
-  echo "INFO: Installing nvm..."
-  # Set PROFILE explicitly to prevent it from adding lines to our bashrc.
-  # We do that ourselves in sh_common/rc.
-  curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | PROFILE='/dev/null' bash
-
-  echo "INFO: Installing nodejs..."
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  echo "yarn" > "${NVM_DIR}/default-packages"
-  nvm install node
-  nvm use node
+  echo "INFO: Installing bazel from PPA..."
+  curl -sL https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+  echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+  sudo apt-get -qq update
+  sudo apt-get -qq install -y bazel
 fi
-
-sudo snap install \
-  btop \
-  nvim
