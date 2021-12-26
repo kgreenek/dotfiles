@@ -46,6 +46,8 @@ vim.cmd [[
   match ExtraWhitespace /\s\+$/
 ]]
 
+-- Save unfo file to persist undo history between sessions.
+vim.opt.undofile = true
 -- Prevent the text from being wrapped automatically.
 vim.opt.textwidth = 0
 vim.opt.wrapmargin = 0
@@ -72,24 +74,3 @@ vim.cmd [[
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   augroup END
 ]]
-
--- Create directories if they don't exist.
-if not vim.fn.isdirectory(vim.fn.stdpath("data") .. "/bak") then
-  vim.fn.mkdir(vim.fn.stdpath("data") .. "/bak", "p")
-end
-if not vim.fn.isdirectory(vim.fn.stdpath("data") .. "/swp") then
-  vim.fn.mkdir(vim.fn.stdpath("data") .. "/swp", "p")
-end
-if not vim.fn.isdirectory(vim.fn.stdpath("data") .. "/undo") then
-  vim.fn.mkdir(vim.fn.stdpath("data") .. "/undo", "p")
-end
--- Save swp, undo, and backup files in a central location instead of the cwd.
--- For Unix and Win32, if a directory ends in two path separators "//" or "\\",
--- the swap file name will be built from the complete path to the file with all
--- path separators substituted to percent '%' signs. This will ensure file name
--- uniqueness in the preserve directory.
-vim.opt.backupdir = vim.fn.stdpath("data") .. "/bak//"
-vim.opt.directory = vim.fn.stdpath("data") .. "/swp//"
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undo//"
--- Save unfo file to persist undo history between sessions.
-vim.opt.undofile = true
