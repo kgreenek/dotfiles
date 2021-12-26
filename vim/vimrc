@@ -34,7 +34,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-ft-bzl'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'bling/vim-airline'
+Plug 'cespare/vim-toml'
 Plug 'cstrahan/vim-capnp'
+Plug 'dcharbon/vim-flatbuffers'
 Plug 'drmikehenry/vim-headerguard'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'google/vim-codefmt'  " Depends: vim-maktaba
@@ -50,7 +52,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': function('BuildYCM') }
+"Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': function('BuildYCM') }
 call plug#end()
 
 filetype plugin indent on
@@ -66,8 +68,8 @@ augroup codefmt_bindings
   autocmd FileType bzl nnoremap <buffer> <C-k> :FormatCode buildifier<CR>
   autocmd FileType bzl vnoremap <buffer> <C-k> :FormatLines buildifier<CR>
 
-  autocmd FileType c,cpp,objc,proto,javascript,arduino nnoremap <buffer> <C-k> :FormatCode clang-format<CR>
-  autocmd FileType c,cpp,objc,proto,javascript,arduino vnoremap <buffer> <C-k> :FormatLines clang-format<CR>
+  autocmd FileType c,cpp,fbs,objc,proto,javascript,arduino nnoremap <buffer> <C-k> :FormatCode clang-format<CR>
+  autocmd FileType c,cpp,fbs,objc,proto,javascript,arduino vnoremap <buffer> <C-k> :FormatLines clang-format<CR>
 
   autocmd FileType python nnoremap <buffer> <C-k> :FormatCode yapf<CR>
   autocmd FileType python vnoremap <buffer> <C-k> :FormatLines yapf<CR>
@@ -187,7 +189,7 @@ augroup END
 set ruler
 
 " Show a ruler at important columns.
-let &colorcolumn="100"
+let &colorcolumn="101"
 " Make the ruler orange (goldenrod) instead of the default red.
 highlight ColorColumn ctermbg=136
 
@@ -236,5 +238,5 @@ set incsearch
 map <C-h> :bp<CR>
 map <C-l> :bn<CR>
 
-" Press jj to exit edit mode to prevent having to stretch to esc.
-imap jj <Esc>
+" Press jk to exit edit mode to prevent having to stretch to esc.
+imap jk <Esc>
