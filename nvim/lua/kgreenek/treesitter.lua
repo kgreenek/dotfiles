@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-configs.setup {
+configs.setup({
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages.
   ensure_installed = "maintained",
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
@@ -21,4 +21,4 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
   },
-}
+})

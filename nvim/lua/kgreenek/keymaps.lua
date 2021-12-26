@@ -41,20 +41,20 @@ keymap("t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>", opts)
 
 keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 
-
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
   vim.notify("which_key not found in keymaps.lua")
   return
 end
 
-which_key.register {
+which_key.register({
   ["<leader>"] = {
     b = {
       name = "+Buffers",
-      d = { "<cmd>bd<cr>", "Close buffer"},
-      e = { "<cmd>Telescope buffers<cr>", "Explore buffers"},
-      w = { "<cmd>w<cr>", "Write buffer"},
+      d = { "<cmd>bd<cr>", "Close buffer" },
+      e = { "<cmd>Telescope buffers<cr>", "Explore buffers" },
+      s = { "<cmd>BufferLineSortByDirectory<cr>", "Sort by directory" },
+      w = { "<cmd>w<cr>", "Write buffer" },
     },
     c = {
       name = "+Quickfix",
@@ -89,7 +89,7 @@ which_key.register {
       s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
       w = { "<cmd>Telescope diagnostics<cr>", "Workspace diagnostics" },
     },
-    w = { "<cmd>w<cr>", "Write buffer"},
+    w = { "<cmd>w<cr>", "Write buffer" },
   },
   g = {
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Go to declaration" },
@@ -100,4 +100,4 @@ which_key.register {
   K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP Hover" },
   ["[d"] = { '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<cr>', "Previous diagnostic" },
   ["]d"] = { '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<cr>', "Next diagnostic" },
-}
+})

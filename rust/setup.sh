@@ -60,3 +60,10 @@ if ! [ -x "$(command -v sd)" ]; then
 else
   echo "INFO: sd already installed. Skipping..."
 fi
+
+if ! [ -x "$(command -v stylua)" ]; then
+  echo "INFO: Installing stylua..."
+  cargo install --quiet stylua
+else
+  echo "INFO: stylua already installed. Skipping..."
+fi

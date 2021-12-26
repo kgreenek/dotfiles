@@ -1,4 +1,4 @@
- -- Allow switching buffers without saving the current buffer first.
+-- Allow switching buffers without saving the current buffer first.
 vim.opt.hidden = true
 -- Show the current row and column at the bottom.
 vim.opt.ruler = true
@@ -7,7 +7,7 @@ vim.opt.laststatus = 2
 -- No need to show text like -- INSERT -- in neovim.
 vim.opt.showmode = false
 -- Don't give ins-completion-menu messages.
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 -- Faster UI update for better overall performance of many plugins.
 vim.opt.updatetime = 250
 -- Give the commandline a bit more room for messages.
@@ -39,12 +39,12 @@ vim.opt.hlsearch = true
 -- Show a ruler at important columns.
 vim.opt.colorcolumn = "101"
 -- Make the ruler orange (goldenrod) instead of the default red.
-vim.cmd [[ highlight ColorColumn ctermbg=136 ]]
+vim.cmd([[ highlight ColorColumn ctermbg=136 ]])
 -- Highlight any trailing whitespace.
-vim.cmd [[
+vim.cmd([[
   highlight ExtraWhitespace ctermbg=red guibg=red
   match ExtraWhitespace /\s\+$/
-]]
+]])
 
 -- Save unfo file to persist undo history between sessions.
 vim.opt.undofile = true
@@ -61,16 +61,16 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 -- Treat words with a - in the middle as one word when navigating.
-vim.opt.iskeyword:append "-"
+vim.opt.iskeyword:append("-")
 
 -- Show relative line numbers in normal mode, and absolute line numbers when
 -- unfocused or insert mode.
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.cmd [[
+vim.cmd([[
   augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   augroup END
-]]
+]])

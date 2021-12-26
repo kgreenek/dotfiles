@@ -4,4 +4,6 @@ if not status_ok then
 end
 
 require("kgreenek.lsp.lsp_installer")
+require("kgreenek.lsp.null_ls")
+
 require("kgreenek.lsp.handlers").setup()

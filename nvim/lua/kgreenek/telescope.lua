@@ -3,9 +3,9 @@ if not status_ok then
   return
 end
 
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
 
-telescope.setup {
+telescope.setup({
   defaults = {
 
     prompt_prefix = " ",
@@ -95,4 +95,4 @@ telescope.setup {
     --   find_cmd = "rg" -- find command (defaults to `fd`)
     -- }
   },
-}
+})
