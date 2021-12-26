@@ -70,6 +70,7 @@ which_key.register {
       r = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
     },
     g = { "<cmd>HeaderguardAdd<cr>", "Header guard" },
+    h = { name = "+Gitsigns hunks" },
     l = {
       name = "+LSP",
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
