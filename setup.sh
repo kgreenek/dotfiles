@@ -17,11 +17,17 @@ mkdir -p ~/bin ~/src ~/.bash_completion.d ~/.zsh/completion ~/.zsh/cache
 echo "--Installing Ubuntu system packages"
 $dir/ubuntu/setup.sh
 
+echo "--Installing snap packages"
+$dir/snap/setup.sh
+
 echo "--Installing pip user packages"
 $dir/pip/setup.sh
 
 echo "--Installing rust and cargo packages"
 $dir/rust/setup.sh
+
+echo "--Installing npm packages"
+$dir/npm/setup.sh
 
 echo "--Installing bazel"
 $dir/bazel/setup.sh
