@@ -56,7 +56,6 @@ return packer.startup({
     use("kyazdani42/nvim-web-devicons")
     use("lewis6991/gitsigns.nvim")
     use("lewis6991/impatient.nvim")
-    use("lukas-reineke/indent-blankline.nvim")
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use("nvim-telescope/telescope.nvim") -- Depends: plenary.nvim, nvim-treesitter
