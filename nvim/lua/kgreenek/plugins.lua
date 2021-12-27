@@ -82,7 +82,10 @@ return packer.startup({
     use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
     -- LSP
-    use("jose-elias-alvarez/null-ls.nvim")
+    -- TODO(kgreenek): Switch back to upstream once this PR is merged:
+    -- https://github.com/jose-elias-alvarez/null-ls.nvim/pull/497
+    --use("jose-elias-alvarez/null-ls.nvim")
+    use("kgreenek/null-ls.nvim")
     use("neovim/nvim-lspconfig")
     use("williamboman/nvim-lsp-installer")
 
