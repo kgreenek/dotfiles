@@ -49,5 +49,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # Use rg for fzf instead of grep.
 if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files --hidden'
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 fi
