@@ -1,4 +1,3 @@
--- Automatically save loaded session on exit.
 vim.g.startify_custom_header = {
   "                                       ██",
   "                                      ░░",
