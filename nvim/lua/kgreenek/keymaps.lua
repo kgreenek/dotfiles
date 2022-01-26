@@ -82,7 +82,7 @@ which_key.register({
       i = { "<cmd>LspInfo<cr>", "Info" },
       j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next diagnostic" },
       k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Previous diagnostic" },
-      l = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<cr>', "Line dianostics" },
+      l = { '<cmd>lua vim.diagnostic.open_float(0, { border = "rounded" })<cr>', "Line dianostics" },
       q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
       r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
       S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
