@@ -31,7 +31,7 @@ if not status_ok then
 end
 
 -- TODO(kgreenek): Is this necessary?
-require("packer_compiled")
+--require("packer_compiled")
 
 -- Have packer use a popup window
 packer.init({
@@ -54,8 +54,10 @@ return packer.startup({
     use("folke/which-key.nvim")
     use("kevinhwang91/rnvimr")
     use("kyazdani42/nvim-web-devicons")
+    use("j-hui/fidget.nvim")
     use("lewis6991/gitsigns.nvim")
     use("lewis6991/impatient.nvim")
+    use("mhinz/vim-startify")
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use("nvim-telescope/telescope.nvim") -- Depends: plenary.nvim, nvim-treesitter
