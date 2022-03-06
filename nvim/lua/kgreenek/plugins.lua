@@ -75,11 +75,6 @@ return packer.startup({
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-path")
     use("hrsh7th/nvim-cmp") -- The completion plugin
-    use("saadparwaiz1/cmp_luasnip") -- snippet completions
-
-    -- snippets
-    use("L3MON4D3/LuaSnip") --snippet engine
-    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
     -- LSP
     use("jose-elias-alvarez/null-ls.nvim")
