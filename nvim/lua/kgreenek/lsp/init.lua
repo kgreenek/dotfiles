@@ -5,5 +5,4 @@ end
 
 require("kgreenek.lsp.lsp_installer")
 require("kgreenek.lsp.null_ls")
-
 require("kgreenek.lsp.handlers").setup()
