@@ -6,8 +6,11 @@ end
 
 null_ls.setup({
   sources = {
+    null_ls.builtins.diagnostics.buildifier,
+    null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.buildifier,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.yapf,
   },
+  update_in_insert = true,
 })
