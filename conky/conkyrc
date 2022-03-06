@@ -138,6 +138,9 @@ custom_variables = {
 	all_diskio_graphs = diskiograph_all(300, 20, 'CCCCCC', 'FCE94F'),
 }
 
+-- External IP (currently [redacted] for privacy in screenshots):
+-- ${execi 1000  wget -q -o /dev/null -O- http://ipecho.net/plain | sed 's/[^0-9\.]*//g'; echo}
+
 conky.text = substitute([[
 ${time %H:%M:%S}${alignr}${time %d-%m-%y}
 ${voffset -16}${font sans-serif:bold:size=18}${alignc}${time %H:%M}${font}
@@ -163,7 +166,7 @@ ${font sans-serif:normal:size=8}${exec bash ~/.conky/sensors_cpu_temps.sh}
 
 ${font Ubuntu:bold:size=10}NETWORK ${hr 2}
 ${font sans-serif:normal:size=8}Local IPs:${alignr}External IP:
-${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}  ${alignr}${execi 1000  wget -q -o /dev/null -O- http://ipecho.net/plain; echo}
+${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}${alignr}[redacted]
 ${font sans-serif:normal:size=8}Down: ${downspeed #{net_device}}${alignr}Up: ${upspeed #{net_device}}
 ${downspeedgraph #{net_device} 80,140 AD7FA8 FCE94F -t}${alignr}${upspeedgraph #{net_device} 80,140 AD7FA8 FCE94F -t}
 ${font sans-serif:bold:size=10}DISK USAGE ${hr 2}
