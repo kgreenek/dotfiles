@@ -30,6 +30,7 @@ sudo apt-get -qq install -y \
   time \
   vim-gtk \
   xsel \
+  yamllint \
   zsh \
 
 # Install chrome
