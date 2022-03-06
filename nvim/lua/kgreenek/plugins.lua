@@ -48,7 +48,6 @@ return packer.startup({
     use("JamshedVesuna/vim-markdown-preview")
     use({ "akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons" })
     use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
-    use("bazelbuild/vim-ft-bzl")
     use("cstrahan/vim-capnp")
     use("drmikehenry/vim-headerguard")
     use("folke/which-key.nvim")
@@ -83,10 +82,7 @@ return packer.startup({
     use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
     -- LSP
-    -- TODO(kgreenek): Switch back to upstream once this PR is merged:
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/pull/497
-    --use("jose-elias-alvarez/null-ls.nvim")
-    use("kgreenek/null-ls.nvim")
+    use("jose-elias-alvarez/null-ls.nvim")
     use("neovim/nvim-lspconfig")
     use("williamboman/nvim-lsp-installer")
 
