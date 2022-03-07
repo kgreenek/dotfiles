@@ -78,6 +78,7 @@ return packer.startup({
 
     -- LSP
     use("jose-elias-alvarez/null-ls.nvim")
+    use("tamago324/nlsp-settings.nvim")  -- For jsonls default schemas
     use("neovim/nvim-lspconfig")
     use("williamboman/nvim-lsp-installer")
 
