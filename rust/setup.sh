@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+function cargo_install () {
+  local package="$1"
+  if ! [ -x "$(command -v "$package")" ]; then
+    echo "INFO: Installing $package..."
+    cargo install --quiet "$package"
+  else
+    echo "INFO: $package already installed. Skipping..."
+  fi
+}
+
 if [[ -d "${HOME}/.cargo" ]]; then
   echo "INFO: rustup already installed. Skipping..."
 else
@@ -12,58 +22,11 @@ PATH="${PATH}:${HOME}/.cargo/bin"
 
 rustup component add rustfmt
 
-if ! [ -x "$(command -v bat)" ]; then
-  echo "INFO: Installing bat..."
-  cargo install --quiet bat
-else
-  echo "INFO: bat already installed. Skipping..."
-fi
-
-if ! [ -x "$(command -v diskonaut)" ]; then
-  echo "INFO: Installing diskonaut..."
-  cargo install --quiet diskonaut
-else
-  echo "INFO: disonaut already installed. Skipping..."
-fi
-
-if ! [ -x "$(command -v dust)" ]; then
-  echo "INFO: Installing dust..."
-  cargo install --quiet du-dust
-else
-  echo "INFO: dust already installed. Skipping..."
-fi
-
-if ! [ -x "$(command -v fd)" ]; then
-  echo "INFO: Installing fd..."
-  cargo install --quiet fd-find
-else
-  echo "INFO: fd already installed. Skipping..."
-fi
-
-if ! [ -x "$(command -v lsd)" ]; then
-  echo "INFO: Installing lsd..."
-  cargo install --quiet lsd
-else
-  echo "INFO: lsd already installed. Skipping..."
-fi
-
-if ! [ -x "$(command -v rg)" ]; then
-  echo "INFO: Installing ripgrep..."
-  cargo install --quiet ripgrep
-else
-  echo "INFO: ripgrep already installed. Skipping..."
-fi
-
-if ! [ -x "$(command -v sd)" ]; then
-  echo "INFO: Installing sd..."
-  cargo install --quiet sd
-else
-  echo "INFO: sd already installed. Skipping..."
-fi
-
-if ! [ -x "$(command -v stylua)" ]; then
-  echo "INFO: Installing stylua..."
-  cargo install --quiet stylua
-else
-  echo "INFO: stylua already installed. Skipping..."
-fi
+cargo_install bat
+cargo_install diskonaut
+cargo_install dust
+cargo_install fd
+cargo_install lsd
+cargo_install rg
+cargo_install sd
+cargo_install stylua

@@ -1,8 +1,10 @@
+#!/bin/sh
+# vi: ft=sh
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 # This is a fix for a known issue with VTE that affects tilix.
 # See: https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
-source "$dir/vte_fix.sh"
+. "$dir/vte_fix.sh"
 
 export GOPATH=$HOME/go
 
@@ -28,7 +30,8 @@ alias make='PATH=/usr/lib/ccache:$PATH /usr/bin/time make'
 alias ninja='PATH=/usr/lib/ccache:$PATH /usr/bin/time ninja'
 
 # ROS aliases
-export CATKIN_SHELL=$(basename "${SHELL}")
+CATKIN_SHELL=$(basename "${SHELL}")
+export CATKIN_SHELL
 
 # NOTE: The catkin build command already prints detailed timing information.
 alias catkin='PATH=/usr/lib/ccache:$PATH catkin'
@@ -47,7 +50,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Use rg for fzf instead of grep.
-if type rg &> /dev/null; then
+# Use rg for fzf instead of grep if it is installed.
+if command -v rg >/dev/null 2>&1; then
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 fi

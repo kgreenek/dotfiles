@@ -12,9 +12,11 @@ if [ -z "${temps_str}" ]; then
   echo "CPU temps not found"
   exit 0
 fi
+# shellcheck disable=SC2001
 # Remove the extra info from sensors. It looks like this "(high = +100C, ...)"
 temps_str="$(echo "${temps_str}" | sed -e 's;\s*(.*);;g')"
 IFS=$'\n'
+# shellcheck disable=SC2206  # We explicitly want word splitting here.
 temps=(${temps_str})
 num_lines="${#temps[@]}"
 if [ "${num_lines}" -lt 4 ]; then
@@ -31,4 +33,5 @@ for ((i=0; i < num_wrapped_lines; i++)); do
     temps_str="${temps_str}${temps[${i}]}\n"
   fi
 done
+# shellcheck disable=SC2059
 printf "${temps_str}"

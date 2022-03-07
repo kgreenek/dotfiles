@@ -1,2 +1,2 @@
 #!/bin/bash
-chsh -s $(which bash)
+chsh -s "$(command -v bash)"

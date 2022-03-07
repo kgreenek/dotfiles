@@ -1,0 +1,3 @@
+# This just causes a ton of noise, and I have never been able to figure out how to get it to work
+# without extensive hard-coding of paths in a non-portable way.
+disable=SC1090

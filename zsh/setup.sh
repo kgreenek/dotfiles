@@ -1,7 +1,7 @@
 #!/bin/bash
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
-if [ ! -n "$ZSH" ]; then
+if [ -z "$ZSH" ]; then
   ZSH="$HOME/.oh-my-zsh"
 fi
 

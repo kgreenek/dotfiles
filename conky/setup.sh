@@ -14,7 +14,7 @@ else
 fi
 
 if [[ -f "${HOME}/.conkyrc" && ! -L "${HOME}/.conkyrc" ]]; then
-  echo "WARNING: "${HOME}/.conkyrc" already exists. Skipping..."
+  echo "WARNING: ${HOME}/.conkyrc already exists. Skipping..."
 else
   if [[ -L "${HOME}/.conkyrc" ]]; then
     echo "INFO: Over-writing existing symlink ${HOME}/.conkyrc"
@@ -24,7 +24,7 @@ fi
 
 if [[ -f "${HOME}/.config/autostart/conky.desktop" && \
     ! -L "${HOME}/.config/autostart/conky.desktop" ]]; then
-  echo "WARNING: "${HOME}/.config/autostart/conky.desktop" already exists. Skipping..."
+  echo "WARNING: ${HOME}/.config/autostart/conky.desktop already exists. Skipping..."
 else
   if [[ -L "${HOME}/.config/autostart/conky.desktop" ]]; then
     echo "INFO: Over-writing existing symlink ${HOME}/.config/autostart/conky.desktop"

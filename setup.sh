@@ -9,52 +9,52 @@ fi
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 # So we can find our user-installed version of pip3 on the first run.
-export PATH="~/.local/bin:$PATH"
+export PATH="${HOME}/.local/bin:$PATH"
 
 echo "--Creating home dirs"
 mkdir -p ~/bin ~/src ~/.bash_completion.d ~/.zsh/completion ~/.zsh/cache
 
 echo "--Installing Ubuntu system packages"
-$dir/ubuntu/setup.sh
+"$dir/ubuntu/setup.sh"
 
 echo "--Installing snap packages"
-$dir/snap/setup.sh
+"$dir/snap/setup.sh"
 
 echo "--Installing pip user packages"
-$dir/pip/setup.sh
+"$dir/pip/setup.sh"
 
 echo "--Installing rust and cargo packages"
-$dir/rust/setup.sh
+"$dir/rust/setup.sh"
 
 echo "--Installing npm packages"
-$dir/npm/setup.sh
+"$dir/npm/setup.sh"
 
 echo "--Installing bazel"
-$dir/bazel/setup.sh
+"$dir/bazel/setup.sh"
 
 echo "--Installing fzf"
-$dir/fzf/setup.sh
+"$dir/fzf/setup.sh"
 
 echo "--Installing fonts"
-$dir/fonts/setup.sh
+"$dir/fonts/setup.sh"
 
 echo "--Setting up zsh config"
-$dir/zsh/setup.sh
+"$dir/zsh/setup.sh"
 
 echo "--Setting up bash config"
-$dir/bash/setup.sh
+"$dir/bash/setup.sh"
 
 echo "--Setting up vim config"
-$dir/vim/setup.sh
+"$dir/vim/setup.sh"
 
 echo "--Setting up ranger config"
-$dir/ranger/setup.sh
+"$dir/ranger/setup.sh"
 
 echo "--Setting up tilix config"
-$dir/tilix/setup.sh
+"$dir/tilix/setup.sh"
 
 echo "--Setting up conky config"
-$dir/conky/setup.sh
+"$dir/conky/setup.sh"
 
 echo ""
 echo "SUCCESS!"

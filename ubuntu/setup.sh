@@ -34,7 +34,7 @@ sudo apt-get -qq install -y \
   zsh \
 
 # Install chrome
-if [ ! -z "$(dpkg -s google-chrome-stable)" ]; then
+if [ -n "$(dpkg -s google-chrome-stable)" ]; then
   echo "INFO: Chrome already installed. Skipping..."
 else
   echo "INFO: Installing chrome from PPA..."
@@ -45,7 +45,7 @@ else
 fi
 
 # Install signal
-if [ ! -z "$(dpkg -s signal-desktop)" ]; then
+if [ -n "$(dpkg -s signal-desktop)" ]; then
   echo "INFO: Signal already installed. Skipping..."
 else
   echo "INFO: Installing signal from PPA..."
@@ -56,7 +56,7 @@ else
 fi
 
 # Install docker
-if [ ! -z "$(dpkg -s docker-ce)" ]; then
+if [ -n "$(dpkg -s docker-ce)" ]; then
   echo "INFO: Docker already installed. Skipping..."
 else
   echo "INFO: Installing docker from PPA..."
@@ -74,7 +74,7 @@ else
 fi
 
 # Install bazel via apt just for up-to-date bash completions. We manage bazel using bazelisk.
-if [ ! -z "$(dpkg -s bazel)" ]; then
+if [ -n "$(dpkg -s bazel)" ]; then
   echo "INFO: bazel apt package already installed. Skipping..."
 else
   echo "INFO: Installing bazel from PPA..."

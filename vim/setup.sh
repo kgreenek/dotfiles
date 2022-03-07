@@ -9,5 +9,5 @@ else
   if [[ -L $HOME/.vimrc ]]; then
     echo "INFO: Over-writing existing symlink $HOME/.vimrc"
   fi
-  ln -sf $dir/vimrc $HOME/.vimrc
+  ln -sf "$dir/vimrc" "$HOME/.vimrc"
 fi

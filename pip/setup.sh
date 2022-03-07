@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ ! -z "${VIRTUAL_ENV}" ]; then
+if [ -n "${VIRTUAL_ENV}" ]; then
   echo "ERROR: Cannot run from within a virtualenv"
   exit 1
 fi

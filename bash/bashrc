@@ -1,5 +1,6 @@
+#!/bin/bash
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
-source "$dir/prompt.sh"
+source "${dir}/prompt.sh"
 
 [ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
 
@@ -9,11 +10,11 @@ alias initrosmelodic="source /opt/ros/melodic/setup.bash"
 alias initrosws="source install/setup.bash"
 
 # User completion files
-if [ ! -z "$(ls ~/.bash_completion.d)" ]; then
+if [ -n "$(ls ~/.bash_completion.d)" ]; then
   for comp_file in ~/.bash_completion.d/* ; do
-    source $comp_file
+    source "${comp_file}"
   done
 fi
 
 # NOTE: This also sets dir, so do it after setting the prompt above.
-source "$dir/../sh_common/rc"
+source "${dir}/../sh_common/rc"
