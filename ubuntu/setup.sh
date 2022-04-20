@@ -21,6 +21,7 @@ sudo apt-get -qq install -y \
   highlight \
   htop \
   lm-sensors \
+  neofetch \
   ninja-build \
   python-dev \
   python3-dev \
@@ -84,7 +85,7 @@ else
   sudo apt-get -qq install -y bazel
 fi
 
-# Install unstable neovim PPA
+# Install neovim unstable PPA.
 if [ -n "$(dpkg -s neovim)" ]; then
   echo "INFO: neovim already installed. Skipping..."
 else
