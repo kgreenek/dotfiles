@@ -83,3 +83,13 @@ else
   sudo apt-get -qq update
   sudo apt-get -qq install -y bazel
 fi
+
+# Install unstable neovim PPA
+if [ -n "$(dpkg -s neovim)" ]; then
+  echo "INFO: neovim already installed. Skipping..."
+else
+  echo "INFO: Installing neovim from PPA..."
+  sudo add-apt-repository ppa:neovim-ppa/unstable -y
+  sudo apt-get -qq update
+  sudo apt-get -qq install -y neovim
+fi
