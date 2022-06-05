@@ -22,6 +22,8 @@ else
   ln -sf "$dir/conkyrc" "${HOME}/.conkyrc"
 fi
 
+# On a fresh install, the autostart directory might not exist.
+mkdir -p "${HOME}/.config/autostart"
 if [[ -f "${HOME}/.config/autostart/conky.desktop" && \
     ! -L "${HOME}/.config/autostart/conky.desktop" ]]; then
   echo "WARNING: ${HOME}/.config/autostart/conky.desktop already exists. Skipping..."
