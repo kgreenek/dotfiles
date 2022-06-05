@@ -47,6 +47,9 @@ echo "--Setting up bash config"
 echo "--Setting up vim config"
 "$dir/vim/setup.sh"
 
+echo "--Setting up nvim config"
+"$dir/nvim/setup.sh"
+
 echo "--Setting up ranger config"
 "$dir/ranger/setup.sh"
 
