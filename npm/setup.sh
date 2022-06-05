@@ -17,4 +17,6 @@ else
   nvm use node
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 npm install --no-fund --global neovim
