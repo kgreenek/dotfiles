@@ -24,9 +24,9 @@ rustup component add rustfmt
 
 cargo_install bat
 cargo_install diskonaut
-cargo_install dust
-cargo_install fd
+cargo_install du-dust
+cargo_install fd-find
 cargo_install lsd
-cargo_install rg
+cargo_install ripgrep
 cargo_install sd
 cargo_install stylua
