@@ -46,6 +46,7 @@ packer.init({
 return packer.startup({
   function(use)
     use("JamshedVesuna/vim-markdown-preview")
+    use("RRethy/vim-illuminate") -- Illuminate other uses of current word/symbol under cursor
     use({ "akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons" })
     use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
     use("cstrahan/vim-capnp")
@@ -78,7 +79,7 @@ return packer.startup({
 
     -- LSP
     use("jose-elias-alvarez/null-ls.nvim")
-    use("tamago324/nlsp-settings.nvim")  -- For jsonls default schemas
+    use("tamago324/nlsp-settings.nvim") -- For jsonls default schemas
     use("neovim/nvim-lspconfig")
     use("williamboman/nvim-lsp-installer")
 
