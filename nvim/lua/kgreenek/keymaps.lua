@@ -61,7 +61,7 @@ which_key.register({
       c = { "<cmd>cclose<cr>", "Close quickfix list" },
       o = { "<cmd>copen<cr>", "Open quickfix list" },
     },
-    e = { "<cmd>RnvimrToggle<cr>", "Explore files" },
+    e = { "<cmd>Ranger<cr>", "Explore files" },
     f = {
       name = "+Files",
       e = { "<cmd>RnvimrToggle<cr>", "Explore files" },

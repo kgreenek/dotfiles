@@ -52,7 +52,7 @@ return packer.startup({
     use("cstrahan/vim-capnp")
     use("drmikehenry/vim-headerguard")
     use("folke/which-key.nvim")
-    use("kevinhwang91/rnvimr")
+    use("francoiscabrol/ranger.vim")
     use("kyazdani42/nvim-web-devicons")
     use("j-hui/fidget.nvim")
     use("lewis6991/gitsigns.nvim")
@@ -62,6 +62,7 @@ return packer.startup({
     use("nvim-lua/plenary.nvim")
     use("nvim-telescope/telescope.nvim") -- Depends: plenary.nvim, nvim-treesitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use("rbgrouleff/bclose.vim")  -- Needed for ranger to work with neovim.
     use("tikhomirov/vim-glsl")
     use("tpope/vim-fugitive")
     use("wbthomason/packer.nvim") -- Have packer manage itself
