@@ -16,7 +16,7 @@ vim.opt.cmdheight = 2
 vim.opt.termguicolors = true
 -- Always show the sign column, otherwise it shifts the text contantly.
 vim.opt.signcolumn = "yes"
--- Disable mouse (enabled by default in neovim v0.8
+-- Disable mouse (enabled by default in neovim v0.8).
 vim.opt.mouse = nil
 
 -- Indent a new line the same amount as the line just typed.
