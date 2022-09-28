@@ -76,3 +76,6 @@ vim.cmd([[
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   augroup END
 ]])
+
+-- Treat ROS launch files as xml.
+vim.cmd([[ autocmd BufNewFile,BufRead *.launch set syntax=xml ]])
