@@ -8,6 +8,11 @@ vim.opt.laststatus = 2
 vim.opt.showmode = false
 -- Don't give ins-completion-menu messages.
 vim.opt.shortmess:append("c")
+-- Let movement keys reach the previous line.
+vim.opt.whichwrap:append("<,>,[,],h,l")
+-- To stop inserting the current comment leader automatically for auto-wrapping comments using
+-- 'textwidth', hitting <Enter> in Insert mode, or hitting 'o' or 'O' in Normal mode.
+vim.opt.formatoptions:remove({ "c", "r", "o" })
 -- Faster UI update for better overall performance of many plugins.
 vim.opt.updatetime = 250
 -- Give the commandline a bit more room for messages.
@@ -62,8 +67,6 @@ vim.opt.clipboard = "unnamedplus"
 -- without scrolling.
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
--- Treat words with a - in the middle as one word when navigating.
-vim.opt.iskeyword:append("-")
 
 -- Show relative line numbers in normal mode, and absolute line numbers when
 -- unfocused or insert mode.
