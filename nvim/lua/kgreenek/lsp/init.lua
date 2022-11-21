@@ -3,6 +3,6 @@ if not status_ok then
   return
 end
 
-require("kgreenek.lsp.configs")
+require("kgreenek.lsp.mason")
 require("kgreenek.lsp.null_ls")
 require("kgreenek.lsp.handlers").setup()

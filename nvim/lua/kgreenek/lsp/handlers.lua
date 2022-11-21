@@ -1,6 +1,14 @@
 local M = {}
 
--- TODO: backfill this to template
+local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_status_ok then
+  return
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+--M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
+
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -14,12 +22,15 @@ M.setup = function()
   end
 
   vim.diagnostic.config({
-    virtual_text = true,
+    virtual_text = false, -- Disable in-line messages (requires pressing leader-l-l to see message).
+    signs = {
+      active = signs, -- show signs
+    },
     update_in_insert = true,
     underline = true,
     severity_sort = true,
     float = {
-      focusable = false,
+      focusable = true,
       style = "minimal",
       border = "rounded",
       source = "always",
@@ -38,8 +49,8 @@ M.setup = function()
 end
 
 local function lsp_highlight_document(client)
-  local status_ok, illuminate = pcall(require, "illuminate")
-  if not status_ok then
+  local illuminate_status_ok, illuminate = pcall(require, "illuminate")
+  if not illuminate_status_ok then
     return
   end
   illuminate.on_attach(client)
@@ -54,14 +65,5 @@ M.on_attach = function(client, _)
   end
   lsp_highlight_document(client)
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
-end
-
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M
