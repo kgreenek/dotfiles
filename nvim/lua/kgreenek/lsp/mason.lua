@@ -18,6 +18,7 @@ local servers = {
   "html",
   "jsonls",
   "pyright",
+  "rust-analyzer",
   "sumneko_lua",
   "tsserver",
   "yamlls",
