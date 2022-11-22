@@ -4,7 +4,6 @@
 -- Tokyonight must be setup before setting the colorscheme.
 local status_ok, tokyonight = pcall(require, "tokyonight")
 if not status_ok then
-  vim.notify("Error loading tokyonight plugin")
   return
 end
 

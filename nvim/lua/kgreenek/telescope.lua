@@ -96,3 +96,6 @@ telescope.setup({
     -- }
   },
 })
+
+-- Get fzf loaded and working with extension
+telescope.load_extension("fzf")

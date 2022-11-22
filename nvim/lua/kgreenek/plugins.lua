@@ -61,7 +61,14 @@ return packer.startup({
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use("nvim-telescope/telescope.nvim") -- Depends: plenary.nvim, nvim-treesitter
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      run = function()
+        local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+        ts_update()
+      end,
+    })
     use("rbgrouleff/bclose.vim") -- Needed for ranger to work with neovim.
     use("tikhomirov/vim-glsl")
     use("tpope/vim-fugitive")
