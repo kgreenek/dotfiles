@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/bin/bash -c "while true; do /usr/bin/conky; done"
+Exec=/bin/bash -c "sleep 5; while true; do /usr/bin/conky; done"
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
