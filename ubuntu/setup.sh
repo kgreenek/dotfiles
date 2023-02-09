@@ -25,7 +25,6 @@ sudo apt-get -qq install -y \
   ninja-build \
   python3-dev \
   python3-pip \
-  shellcheck \
   tilix \
   time \
   vim-gtk \
@@ -82,14 +81,4 @@ else
   echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
   sudo apt-get -qq update
   sudo apt-get -qq install -y bazel
-fi
-
-# Install neovim unstable PPA.
-if [ -n "$(dpkg -s neovim)" ]; then
-  echo "INFO: neovim already installed. Skipping..."
-else
-  echo "INFO: Installing neovim from PPA..."
-  sudo add-apt-repository ppa:neovim-ppa/unstable -y
-  sudo apt-get -qq update
-  sudo apt-get -qq install -y neovim
 fi

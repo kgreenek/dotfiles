@@ -12,7 +12,13 @@ dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 export PATH="${HOME}/.local/bin:$PATH"
 
 echo "--Creating home dirs"
-mkdir -p ~/bin ~/src ~/.bash_completion.d ~/.zsh/completion ~/.zsh/cache
+mkdir -p \
+  ~/bin \
+  ~/src \
+  ~/go \
+  ~/.bash_completion.d \
+  ~/.zsh/completion \
+  ~/.zsh/cache
 
 echo "--Installing Ubuntu system packages"
 "$dir/ubuntu/setup.sh"
