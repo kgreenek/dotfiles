@@ -17,9 +17,9 @@ local servers = {
   "clangd",
   "html",
   "jsonls",
+  "lua_ls",
   "pyright",
   "rust_analyzer",
-  "sumneko_lua",
   "tsserver",
   "yamlls",
 }
