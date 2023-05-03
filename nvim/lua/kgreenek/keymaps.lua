@@ -38,8 +38,14 @@ keymap("v", "p", '"_dP', opts)
 keymap("n", "<M-o>", ":RnvimrToggle<CR>", opts)
 keymap("t", "<M-o>", "<C-\\><C-n>:RnvimrToggle<CR>", opts)
 keymap("t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>", opts)
-
 keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "bzl",
+  callback = function()
+    vim.keymap.set("n", "gd", vim.fn.GoToBazelDefinition, { buffer = true, desc = "Goto Definition" })
+  end,
+})
 
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then

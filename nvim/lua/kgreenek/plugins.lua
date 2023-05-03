@@ -14,12 +14,13 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-local au_packer = vim.api.nvim_create_augroup("packer_autoconf", {clear = true})
-vim.api.nvim_create_autocmd(
-	"BufWritePost", {group = au_packer, pattern = "plugins.lua",
-	command = "source <afile> | PackerSync",
-	desc = "Reloads nvim when you save plugins.lua"}
-)
+local au_packer = vim.api.nvim_create_augroup("packer_autoconf", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = au_packer,
+  pattern = "plugins.lua",
+  command = "source <afile> | PackerSync",
+  desc = "Reloads nvim when you save plugins.lua",
+})
 
 -- This needs to be loaded before any other plugin in order to work.
 pcall(require, "impatient")
@@ -73,8 +74,8 @@ return packer.startup({
     use("tikhomirov/vim-glsl")
     use("tpope/vim-fugitive")
     use("wbthomason/packer.nvim") -- Have packer manage itself
-    use({ "williamboman/mason.nvim", commit = "c2002d7a6b5a72ba02388548cfaf420b864fbc12" }) -- Simple to use language server installer
-    use({ "williamboman/mason-lspconfig.nvim", commit = "0051870dd728f4988110a1b2d47f4a4510213e31" })
+    use("williamboman/mason.nvim") -- Simple to use language server installer
+    use("williamboman/mason-lspconfig.nvim")
 
     -- Themes
     use("folke/tokyonight.nvim")
@@ -91,6 +92,12 @@ return packer.startup({
     use("jose-elias-alvarez/null-ls.nvim")
     use("tamago324/nlsp-settings.nvim") -- For jsonls default schemas
     use("neovim/nvim-lspconfig")
+
+    -- bazel
+    use("google/vim-maktaba")
+    use("bazelbuild/vim-bazel")
+    use("alexander-born/bazel.nvim")
+    --use("alexander-born/cmp-bazel")
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
