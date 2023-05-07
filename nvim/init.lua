@@ -20,3 +20,6 @@ require("kgreenek.treesitter")
 require("kgreenek.vim_headerguard")
 require("kgreenek.vim_markdown_preview")
 require("kgreenek.which_key")
+
+-- This must come after telescope.
+require("kgreenek.chatgpt")

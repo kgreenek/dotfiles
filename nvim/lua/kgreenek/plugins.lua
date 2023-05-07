@@ -47,6 +47,7 @@ packer.init({
 return packer.startup({
   function(use)
     use("JamshedVesuna/vim-markdown-preview")
+    use("MunifTanjim/nui.nvim")
     use("RRethy/vim-illuminate") -- Illuminate other uses of current word/symbol under cursor
     use({ "akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons" })
     use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
@@ -98,6 +99,18 @@ return packer.startup({
     use("bazelbuild/vim-bazel")
     use("alexander-born/bazel.nvim")
     --use("alexander-born/cmp-bazel")
+
+    use({
+      "jackMort/ChatGPT.nvim",
+      --config = function()
+      --  require("chatgpt").setup()
+      --end,
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+      },
+    })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
