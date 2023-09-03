@@ -56,7 +56,7 @@ return packer.startup({
     use("folke/which-key.nvim")
     use("francoiscabrol/ranger.vim")
     use("kyazdani42/nvim-web-devicons")
-    use("j-hui/fidget.nvim")
+    use({ "j-hui/fidget.nvim", tag = "legacy" })
     use("lewis6991/gitsigns.nvim")
     use("lewis6991/impatient.nvim")
     use("mhinz/vim-startify")
@@ -96,8 +96,8 @@ return packer.startup({
 
     -- bazel
     use("google/vim-maktaba")
-    use("bazelbuild/vim-bazel")
-    use("alexander-born/bazel.nvim")
+    use({ "bazelbuild/vim-bazel", requires = { "google/vim-maktaba" } })
+    use({ "alexander-born/bazel.nvim", requires = { "nvim-treesitter/nvim-treesitter" } })
     --use("alexander-born/cmp-bazel")
 
     use({
