@@ -41,6 +41,10 @@ keymap("t", "<M-o>", "<C-\\><C-n>:RnvimrToggle<CR>", opts)
 keymap("t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>", opts)
 keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 
+-- illumuniate keymaps
+keymap("n", "<a-n>", '<cmd>lua require("illuminate").next_reference({wrap=true})<cr>', opts)
+keymap("n", "<a-p>", '<cmd>lua require("illuminate").next_reference({reverse=true,wrap=true})<cr>', opts)
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "bzl",
   callback = function()
