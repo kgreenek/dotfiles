@@ -93,6 +93,7 @@ return packer.startup({
     use("jose-elias-alvarez/null-ls.nvim")
     use("tamago324/nlsp-settings.nvim") -- For jsonls default schemas
     use("neovim/nvim-lspconfig")
+    use("jay-babu/mason-null-ls.nvim")
 
     -- bazel
     use("google/vim-maktaba")
