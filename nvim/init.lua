@@ -1,5 +1,5 @@
 -- Install plugins. This must come first.
-require("kgreenek.plugins")
+require("kgreenek.lazy")
 
 -- Vim config.
 require("kgreenek.colorscheme")
