@@ -157,8 +157,8 @@ ${swapbar}
 ${memgraph 60,300 89E233 FCE94F -t}
 ${font sans-serif:bold:size=10}GPU ${hr 2}
 ${font sans-serif:normal:size=8}${nvidia modelname}
-${font sans-serif:normal:size=8}GPU: ${nvidia gpuutil}%${alignc -25}RAM: ${nvidia membwutil}% (${nvidia memused}/${nvidia memmax} MB)${alignr}PCIe: ${nvidia pcieutil}%
-${nvidiagraph gpuutil 20,90 EF2828 FCE94F -t -l}${offset 15}${nvidiagraph membwutil 20,90 EF2828 FCE94F -t -l}${offset 15}${nvidiagraph pcieutil 20,90 EF2828 FCE94F -t -l}
+${font sans-serif:normal:size=8}GPU: ${nvidia gpuutil}%${alignc -25}RAM: ${nvidia memutil}% (${nvidia memused}/${nvidia memmax} MB)${alignr}MEMBW: ${nvidia membwutil}%
+${nvidiagraph gpuutil 20,90 EF2828 FCE94F -t -l}${offset 15}${nvidiagraph memutil 20,90 EF2828 FCE94F -t -l}${offset 15}${nvidiagraph membwutil 20,90 EF2828 FCE94F -t -l}
 ${font sans-serif:bold:size=10}TEMPS ${hr 2}
 ${font sans-serif:normal:size=8}GPU:${goto 69}+${nvidia temp}°C
 ${font sans-serif:normal:size=8}${exec bash ~/.conky/sensors_cpu_temps.sh}
