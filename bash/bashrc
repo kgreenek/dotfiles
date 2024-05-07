@@ -13,3 +13,5 @@ fi
 
 # NOTE: This also sets dir, so do it after setting the prompt above.
 source "${dir}/../sh_common/rc"
+
+eval "$("${HOME}/.local/bin/mise" activate bash)"

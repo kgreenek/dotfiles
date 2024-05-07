@@ -1,17 +1,20 @@
 #!/bin/sh
 # vi: ft=sh
+# shellcheck disable=1091
+
+# shellcheck disable=3028
 dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 # This is a fix for a known issue with VTE that affects tilix.
 # See: https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
 . "$dir/vte_fix.sh"
 
-export GOPATH=$HOME/go
+export GOPATH="${HOME}/go"
 
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/bin:$PATH
+export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="${GOPATH}/bin:${PATH}"
+export PATH="${HOME}/.cargo/bin:${PATH}"
+export PATH="${HOME}/bin:${PATH}"
 export EDITOR=nvim
 
 alias ls=lsd
@@ -46,11 +49,6 @@ alias initrosnoetic="source /opt/ros/noetic/setup.sh"
 alias initroshumble="source /opt/ros/humble/setup.sh"
 alias initrosrolling="source /opt/ros/rolling/setup.sh"
 alias initrosws='source $(catkin locate)/install/setup.sh'
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Use rg for fzf instead of grep if it is installed.
 if command -v rg >/dev/null 2>&1; then

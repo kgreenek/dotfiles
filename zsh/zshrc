@@ -1,3 +1,9 @@
+# To debug startup time run:
+#   time ZSH_DEBUGRC=1 zsh -i -c exit
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+  zmodload zsh/zprof
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -72,3 +78,9 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 source "$dir/../sh_common/rc"
+
+eval "$("${HOME}/.local/bin/mise" activate zsh)"
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+  zprof
+fi
