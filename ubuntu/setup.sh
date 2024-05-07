@@ -37,8 +37,8 @@ if [ -n "$(dpkg -s google-chrome-stable)" ]; then
   echo "INFO: Chrome already installed. Skipping..."
 else
   echo "INFO: Installing chrome from PPA..."
-  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+  curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
   sudo apt-get -qq update
   sudo apt-get -qq install -y google-chrome-stable
 fi
@@ -48,8 +48,8 @@ if [ -n "$(dpkg -s signal-desktop)" ]; then
   echo "INFO: Signal already installed. Skipping..."
 else
   echo "INFO: Installing signal from PPA..."
-  wget -q -O- https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
-  echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+  curl -fsSL https://updates.signal.org/desktop/apt/keys.asc | sudo gpg --dearmor -o /usr/share/keyrings/signal-desktop-keyring.gpg
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main" | sudo tee /etc/apt/sources.list.d/signal-xenial.list
   sudo apt-get -qq update
   sudo apt-get -qq install -y signal-desktop
 fi
@@ -61,7 +61,7 @@ else
   echo "INFO: Installing docker from PPA..."
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
   echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-    | sudo tee -a /etc/apt/sources.list.d/docker.list
+    | sudo tee /etc/apt/sources.list.d/docker.list
   sudo apt-get -qq update
   sudo apt-get -qq install -y docker-ce docker-ce-cli containerd.io
 
@@ -77,8 +77,8 @@ if [ -n "$(dpkg -s bazel)" ]; then
   echo "INFO: bazel apt package already installed. Skipping..."
 else
   echo "INFO: Installing bazel from PPA..."
-  curl -sL https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
-  echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+  curl -fsSL https://bazel.build/bazel-release.pub.gpg | sudo gpg --dearmor -o /usr/share/keyrings/bazel-archive-keyring.gpg
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
   sudo apt-get -qq update
   sudo apt-get -qq install -y bazel
 fi
