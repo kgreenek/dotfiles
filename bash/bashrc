@@ -4,11 +4,6 @@ source "${dir}/prompt.sh"
 
 [ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
 
-# ROS aliases
-alias initroskinetic="source /opt/ros/kinetic/setup.bash"
-alias initrosmelodic="source /opt/ros/melodic/setup.bash"
-alias initrosws="source install/setup.bash"
-
 # User completion files
 if [ -n "$(ls ~/.bash_completion.d)" ]; then
   for comp_file in ~/.bash_completion.d/* ; do
