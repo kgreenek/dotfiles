@@ -30,3 +30,4 @@ cargo_install lsd
 cargo_install ripgrep
 cargo_install sd
 cargo_install stylua
+cargo_install tree-sitter-cli
