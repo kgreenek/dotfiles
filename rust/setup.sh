@@ -3,11 +3,15 @@ set -e
 
 function cargo_install () {
   local package="$1"
-  if ! [ -x "$(command -v "$package")" ]; then
-    echo "INFO: Installing $package..."
-    cargo install --quiet "$package"
+  local bin="$2"
+  if [[ "${bin}" == "" ]]; then
+    bin="${package}"
+  fi
+  if ! [ -x "$(command -v "${bin}")" ]; then
+    echo "INFO: Installing ${package}..."
+    cargo install --quiet "${package}"
   else
-    echo "INFO: $package already installed. Skipping..."
+    echo "INFO: ${package} already installed. Skipping..."
   fi
 }
 
@@ -24,10 +28,10 @@ rustup component add rustfmt
 
 cargo_install bat
 cargo_install diskonaut
-cargo_install du-dust
-cargo_install fd-find
+cargo_install du-dust dust
+cargo_install fd-find fd
 cargo_install lsd
-cargo_install ripgrep
+cargo_install ripgrep rg
 cargo_install sd
 cargo_install stylua
-cargo_install tree-sitter-cli
+cargo_install tree-sitter-cli tree-sitter
