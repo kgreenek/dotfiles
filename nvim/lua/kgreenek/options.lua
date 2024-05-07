@@ -80,5 +80,8 @@ vim.cmd([[
   augroup END
 ]])
 
+-- Close the netrw buffer after opening a file.
+vim.g.netrw_fastbrowse = 0
+
 -- Treat ROS launch files as xml.
 vim.cmd([[ autocmd BufNewFile,BufRead *.launch set syntax=xml ]])
