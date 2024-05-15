@@ -22,6 +22,7 @@ local servers = {
   "clangd",
   "html",
   "jsonls",
+  "jsonnet_ls",
   "lua_ls",
   "pyright",
   "rust_analyzer",
