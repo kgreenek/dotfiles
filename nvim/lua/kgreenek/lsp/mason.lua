@@ -18,9 +18,11 @@ local lsp_handlers = require("kgreenek.lsp.handlers")
 
 -- These servers will be installed by default.
 local servers = {
+  "autotools_ls",
   "bashls",
   "clangd",
   "html",
+  "jinja_lsp",
   "jsonls",
   "jsonnet_ls",
   "lua_ls",
