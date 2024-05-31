@@ -17,9 +17,11 @@ sudo apt-get -qq install -y \
   clang-format \
   conky-all \
   curl \
+  ffmpegthumbnailer \
   git \
   highlight \
   htop \
+  jq \
   lm-sensors \
   neofetch \
   ninja-build \
@@ -27,6 +29,7 @@ sudo apt-get -qq install -y \
   python3-pip \
   tilix \
   time \
+  unar \
   vim-gtk \
   xsel \
   yamllint \

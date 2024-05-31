@@ -35,3 +35,4 @@ cargo_install ripgrep rg
 cargo_install sd
 cargo_install stylua
 cargo_install tree-sitter-cli tree-sitter
+cargo_install yazi-fm yazi-cli
