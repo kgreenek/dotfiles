@@ -9,9 +9,11 @@ return {
   "nvim-lua/plenary.nvim",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   "nvim-tree/nvim-web-devicons",
+  "echasnovski/mini.nvim",
   "rbgrouleff/bclose.vim", -- Needed for ranger to work with neovim.
   "tikhomirov/vim-glsl",
   "tpope/vim-fugitive",
+  "folke/which-key.nvim",
 
   -- cmp plugins
   "alexander-born/cmp-bazel",
@@ -22,7 +24,7 @@ return {
   "hrsh7th/cmp-path",
 
   -- LSP
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
   "neovim/nvim-lspconfig",
   "tamago324/nlsp-settings.nvim", -- For jsonls default schemas
   "williamboman/mason.nvim", -- Simple to use language server installer
@@ -36,7 +38,7 @@ return {
   {
     "jay-babu/mason-null-ls.nvim",
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       "williamboman/mason.nvim",
     },
   },
