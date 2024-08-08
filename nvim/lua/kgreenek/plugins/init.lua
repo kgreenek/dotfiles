@@ -46,5 +46,4 @@ return {
   -- bazel
   "google/vim-maktaba",
   { "bazelbuild/vim-bazel", dependencies = { "google/vim-maktaba" } },
-  { "alexander-born/bazel.nvim", dependencies = { "nvim-treesitter/nvim-treesitter" } },
 }
