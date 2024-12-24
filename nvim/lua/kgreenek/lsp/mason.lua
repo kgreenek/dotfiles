@@ -29,7 +29,7 @@ local servers = {
   "pyright",
   "rust_analyzer",
   "taplo",
-  "tsserver",
+  "ts_ls",
   "yamlls",
 }
 
@@ -45,6 +45,7 @@ mason_null_ls.setup({
     "shellcheck",
     "shfmt",
     "stylua",
+    "yamlfmt",
     "yapf",
   },
   automatic_installation = false,
