@@ -33,12 +33,14 @@ sudo apt-get -qq install -y \
   lm-sensors \
   neofetch \
   ninja-build \
+  pipx \
   python3-dev \
   python3-pip \
+  python3-pynvim \
   tilix \
   time \
   unar \
-  vim-gtk \
+  vim-gtk3 \
   xsel \
   yamllint \
   zsh
