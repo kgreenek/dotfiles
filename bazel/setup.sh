@@ -4,7 +4,7 @@ set -e
 # Install bazelisk
 # NOTE: Only works on linux.
 bazelisk_bin="${HOME}/bin/bazel"
-bazelisk_url="https://github.com/bazelbuild/bazelisk/releases/download/v1.18.0/bazelisk-linux-amd64"
+bazelisk_url="https://github.com/bazelbuild/bazelisk/releases/download/v1.26.0/bazelisk-linux-amd64"
 if [ -f "${bazelisk_bin}" ]; then
 	echo "INFO: bazelisk already installed. Skipping..."
 else
@@ -16,7 +16,7 @@ fi
 # Install buildifier
 # NOTE: Only works on linux.
 buildifier_bin="${HOME}/bin/buildifier"
-buildifier_url="https://github.com/bazelbuild/buildtools/releases/download/v6.3.3/buildifier-linux-amd64"
+buildifier_url="https://github.com/bazelbuild/buildtools/releases/download/v8.2.1/buildifier-linux-amd64"
 if [ -f "${buildifier_bin}" ]; then
 	echo "INFO: buildifier already installed. Skipping..."
 else
