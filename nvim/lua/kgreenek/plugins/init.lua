@@ -27,12 +27,12 @@ return {
   "nvimtools/none-ls.nvim",
   "neovim/nvim-lspconfig",
   "tamago324/nlsp-settings.nvim", -- For jsonls default schemas
-  "williamboman/mason.nvim", -- Simple to use language server installer
+  "mason-org/mason.nvim",
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
+      { "mason-org/mason.nvim" },
       "neovim/nvim-lspconfig",
-      "williamboman/mason.nvim",
     },
   },
   {
