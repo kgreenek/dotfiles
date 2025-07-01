@@ -63,13 +63,3 @@ else
     exit 1
   }
 fi
-
-#if [ -d "$ZSH/custom/plugins/bazel" ]; then
-#  echo "INFO: bazel plugin already set up. Skipping..."
-#else
-#  echo "INFO: Installing bazel plugin..."
-#  env git clone -q https://github.com/jackwish/bazel "$ZSH/custom/plugins/bazel" || {
-#    echo "ERROR: git clone of bazel repo failed"
-#    exit 1
-#  }
-#fi
