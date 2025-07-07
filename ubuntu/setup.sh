@@ -103,3 +103,11 @@ else
   echo "INFO: Setting mouse accel-profile to 'flat'"
   gsettings set org.gnome.desktop.peripherals.mouse accel-profile flat
 fi
+
+xkb_options="$(gsettings get org.gnome.desktop.input-sources xkb-options)"
+if [[ "${xkb_options}" == "['caps:swapescape']" ]]; then
+  echo "INFO: xkb_options already set to ['caps:swapescape']. Skipping..."
+else
+  echo "INFO: Setting xkb_options to ['caps:swapescape']"
+  gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+fi
