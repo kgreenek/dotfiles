@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eou pipefail
 
 echo "INFO: Updating apt sources (may take a while)..."
 sudo apt-get -qq update
@@ -94,4 +94,12 @@ else
   echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
   sudo apt-get -qq update
   sudo apt-get -qq install -y bazel
+fi
+
+mouse_accel_profile="$(gsettings get org.gnome.desktop.peripherals.mouse accel-profile)"
+if [[ "${mouse_accel_profile}" == "'flat'" ]]; then
+  echo "INFO: Mouse accel-profile already set to 'flat'. Skipping..."
+else
+  echo "INFO: Setting mouse accel-profile to 'flat'"
+  gsettings set org.gnome.desktop.peripherals.mouse accel-profile flat
 fi
