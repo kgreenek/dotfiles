@@ -21,4 +21,8 @@ vim.g.maplocalleader = " "
 local lazy = require("lazy")
 
 -- Install plugins
-return lazy.setup("kgreenek/plugins")
+return lazy.setup("kgreenek/plugins", {
+  git = {
+    timeout = 600, -- Timeout in seconds
+  },
+})
