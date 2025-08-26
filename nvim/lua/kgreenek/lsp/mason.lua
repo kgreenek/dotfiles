@@ -25,6 +25,7 @@ local servers = {
   "jinja_lsp",
   "jsonls",
   "jsonnet_ls",
+  "lemminx",
   "lua_ls",
   "pyright",
   "rust_analyzer",
