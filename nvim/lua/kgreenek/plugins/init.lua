@@ -29,7 +29,7 @@ return {
   "tamago324/nlsp-settings.nvim", -- For jsonls default schemas
   "mason-org/mason.nvim",
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
       { "mason-org/mason.nvim" },
       "neovim/nvim-lspconfig",
@@ -39,7 +39,7 @@ return {
     "jay-babu/mason-null-ls.nvim",
     dependencies = {
       "nvimtools/none-ls.nvim",
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
     },
   },
 
