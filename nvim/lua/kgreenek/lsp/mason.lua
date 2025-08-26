@@ -27,7 +27,8 @@ local servers = {
   "jsonnet_ls",
   "lemminx",
   "lua_ls",
-  "pyright",
+  "pyright", -- Disable when ruff is enabled
+  --"ruff",
   "rust_analyzer",
   "taplo",
   "ts_ls",
@@ -47,7 +48,7 @@ mason_null_ls.setup({
     "shfmt",
     "stylua",
     "yamlfmt",
-    "yapf",
+    "yapf", -- Disable when ruff is enabled
   },
   automatic_installation = false,
   handlers = {},
