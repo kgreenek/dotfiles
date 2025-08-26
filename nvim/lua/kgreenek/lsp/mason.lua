@@ -52,15 +52,16 @@ mason_null_ls.setup({
   handlers = {},
 })
 
-for _, server in pairs(servers) do
-  local opts = {
-    on_attach = lsp_handlers.on_attach,
-    capabilities = lsp_handlers.capabilities,
-  }
-  server = vim.split(server, "@")[1]
-  local has_custom_opts, server_custom_opts = pcall(require, "kgreenek.lsp.settings." .. server)
-  if has_custom_opts then
-    opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
-  end
-  lspconfig[server].setup(opts)
-end
+-- Disable for now to avoid duplicate servers running.
+-- for _, server in pairs(servers) do
+--   local opts = {
+--     on_attach = lsp_handlers.on_attach,
+--     capabilities = lsp_handlers.capabilities,
+--   }
+--   server = vim.split(server, "@")[1]
+--   local has_custom_opts, server_custom_opts = pcall(require, "kgreenek.lsp.settings." .. server)
+--   if has_custom_opts then
+--     opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
+--   end
+--   lspconfig[server].setup(opts)
+-- end
