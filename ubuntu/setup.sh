@@ -30,6 +30,7 @@ sudo apt-get -qq install -y \
   highlight \
   htop \
   jq \
+  libsox-fmt-mp3 \
   lm-sensors \
   neofetch \
   ninja-build \
@@ -37,6 +38,7 @@ sudo apt-get -qq install -y \
   python3-dev \
   python3-pip \
   python3-pynvim \
+  sox \
   tilix \
   time \
   unar \
