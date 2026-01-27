@@ -22,6 +22,7 @@ sudo apt-get -qq install -y \
   caca-utils \
   ccache \
   cmake \
+  clang \
   clang-format \
   conky-all \
   curl \
@@ -38,6 +39,7 @@ sudo apt-get -qq install -y \
   python3-dev \
   python3-pip \
   python3-pynvim \
+  sd \
   sox \
   tilix \
   time \

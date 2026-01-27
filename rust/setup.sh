@@ -30,8 +30,7 @@ cargo_install du-dust
 cargo_install fd-find
 cargo_install lsd
 cargo_install ripgrep
-cargo_install sd
 cargo_install stylua
 cargo_install tree-sitter-cli
-cargo_install yazi-fm yazi-cli
+cargo_install yazi-build
 cargo_install zoxide
