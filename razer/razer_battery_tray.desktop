@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=sh -c "$HOME/src/HoroTW/RazerBatteryTray/src/razer_battery_tray.py 'Razer Basilisk V3 Pro'"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=razer_battery_tray
+Name=razer_battery_tray
+Comment[en_US]=
+Comment=
