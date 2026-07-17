@@ -1,15 +1,6 @@
-local mason_status_ok, mason = pcall(require, "mason")
-if not mason_status_ok then
-  return
-end
-local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not mason_lspconfig_status_ok then
-  return
-end
-local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
-if not mason_tool_installer_ok then
-  return
-end
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
+local mason_tool_installer = require("mason-tool-installer")
 
 -- These servers will be installed by default.
 local servers = {

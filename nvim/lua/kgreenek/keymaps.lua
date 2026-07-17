@@ -41,12 +41,7 @@ keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 keymap("n", "<a-n>", '<cmd>lua Snacks.words.jump(1, true)<cr>', opts)
 keymap("n", "<a-p>", '<cmd>lua Snacks.words.jump(-1, true)<cr>', opts)
 
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  vim.notify("which_key not found in keymaps.lua")
-  return
-end
-
+local which_key = require("which-key")
 which_key.add({
   { "<leader>b", group = "Buffers" },
   { "<leader>bd", "<cmd>bd<cr>", desc = "Close buffer" },
