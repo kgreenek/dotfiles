@@ -15,14 +15,6 @@ return {
   "tpope/vim-fugitive",
   "folke/which-key.nvim",
 
-  -- cmp plugins
-  "alexander-born/cmp-bazel",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-cmdline",
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-nvim-lua",
-  "hrsh7th/cmp-path",
-
   -- LSP
   "nvimtools/none-ls.nvim",
   "neovim/nvim-lspconfig",

@@ -1,126 +1,69 @@
-local check_backspace = function()
-  local col = vim.fn.col(".") - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
---   פּ ﯟ   some other good icons
-local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
--- find more here: https://www.nerdfonts.com/cheat-sheet
-
 return {
-  "hrsh7th/nvim-cmp", -- The completion plugin
+  "saghen/blink.cmp",
+  version = "1.*",
   dependencies = {
+    { "saghen/blink.compat", version = "2.*" },
     "alexander-born/cmp-bazel",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lua",
-    "hrsh7th/cmp-path",
   },
-  config = function()
-    local cmp = require("cmp")
-    cmp.setup({
-      mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ["<C-e>"] = cmp.mapping({
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close(),
-        }),
-        -- Accept currently selected item. If none selected, `select` first item.
-        -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif check_backspace() then
-            fallback()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-      }),
-      formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-          -- Kind icons
-          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-          -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-          vim_item.menu = ({
-            nvim_lsp = "[LSP]",
-            bazel = "[Bazel]",
-            buffer = "[Buffer]",
-            path = "[Path]",
-          })[entry.source.name]
-          return vim_item
-        end,
+  opts = {
+    keymap = {
+      preset = "none",
+      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+      ["<C-Space>"] = { "show", "fallback" },
+      ["<C-e>"] = { "hide", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
+      ["<Tab>"] = { "select_next", "fallback" },
+      ["<S-Tab>"] = { "select_prev", "fallback" },
+    },
+    cmdline = {
+      sources = { "cmdline" },
+    },
+    sources = {
+      default = { "lsp", "path", "buffer", "bazel" },
+      providers = {
+        bazel = {
+          name = "bazel",
+          module = "blink.compat.source",
+          score_offset = -3,
+        },
       },
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "bazel" },
-        { name = "buffer" },
-        { name = "path" },
+    },
+    completion = {
+      list = {
+        selection = {
+          auto_insert = false,
+        },
       },
-      confirm_opts = {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
+      menu = {
+        draw = {
+          columns = {
+            { "kind_icon" },
+            { "label", "label_description", gap = 1 },
+            { "source_name" },
+          },
+          components = {
+            source_name = {
+              text = function(ctx)
+                local labels = {
+                  lsp = "[LSP]",
+                  bazel = "[Bazel]",
+                  buffer = "[Buffer]",
+                  path = "[Path]",
+                  cmdline = "[Cmd]",
+                }
+                return labels[ctx.source_name] or ("[" .. ctx.source_name .. "]")
+              end,
+            },
+          },
+        },
       },
-      window = {
-        documentation = cmp.config.window.bordered(),
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
       },
-      experimental = {
-        ghost_text = false,
-        native_menu = false,
-      },
-    })
-
-    cmp.setup.cmdline(":", {
-      sources = {
-        { name = "cmdline" },
-      },
-    })
-  end,
+    },
+  },
 }
