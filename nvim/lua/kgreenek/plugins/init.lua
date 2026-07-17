@@ -1,12 +1,10 @@
 return {
-  "MunifTanjim/nui.nvim",
   { "akinsho/bufferline.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
   "cstrahan/vim-capnp",
   "nvim-lua/plenary.nvim",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   "nvim-tree/nvim-web-devicons",
-  "echasnovski/mini.nvim",
   "tikhomirov/vim-glsl",
   "tpope/vim-fugitive",
   "folke/which-key.nvim",

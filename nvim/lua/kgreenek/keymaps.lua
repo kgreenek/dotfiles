@@ -1,5 +1,5 @@
--- NOTE: All leader keymaps are configured using the which_key plugin.
--- SEE: which_key.lua
+-- NOTE: Leader keymaps are configured with which-key, in the which_key.add
+-- call at the bottom of this file.
 
 -- Modes
 --   normal_mode = "n",
@@ -64,14 +64,14 @@ which_key.add({
   { "<leader>g", "<cmd>HeaderguardAdd<cr>", desc = "Header guard" },
   { "<leader>h", group = "Gitsigns hunks" },
   { "<leader>l", group = "LSP" },
-  { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer info" },
+  { "<leader>lI", "<cmd>Mason<cr>", desc = "Mason installer" },
   { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace symbols" },
   { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code action" },
   { "<leader>lc", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens action" },
   { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
   { "<leader>lf", "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<cr>", desc = "Format" },
   { "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover" },
-  { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
+  { "<leader>li", "<cmd>checkhealth lsp<cr>", desc = "LSP info" },
   { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Next diagnostic" },
   { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Previous diagnostic" },
   { "<leader>ll", '<cmd>lua vim.diagnostic.open_float(0, { border = "rounded" })<cr>', desc = "Line dianostics" },
