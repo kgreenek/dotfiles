@@ -13,7 +13,6 @@ return {
   "folke/which-key.nvim",
 
   -- LSP
-  "nvimtools/none-ls.nvim",
   "neovim/nvim-lspconfig",
   "tamago324/nlsp-settings.nvim", -- For jsonls default schemas
   "mason-org/mason.nvim",
@@ -24,11 +23,9 @@ return {
       "neovim/nvim-lspconfig",
     },
   },
+  -- Auto-installs the formatters/linters (consumed by conform.nvim + nvim-lint).
   {
-    "jay-babu/mason-null-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls.nvim",
-      "mason-org/mason.nvim",
-    },
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "mason-org/mason.nvim" },
   },
 }

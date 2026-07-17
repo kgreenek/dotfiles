@@ -5,4 +5,3 @@ end
 
 require("kgreenek.lsp.handlers").setup()
 require("kgreenek.lsp.mason")
-require("kgreenek.lsp.null_ls")

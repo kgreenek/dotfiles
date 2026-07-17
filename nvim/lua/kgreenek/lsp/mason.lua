@@ -6,8 +6,8 @@ local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconf
 if not mason_lspconfig_status_ok then
   return
 end
-local mason_null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
-if not mason_null_ls_ok then
+local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
+if not mason_tool_installer_ok then
   return
 end
 
@@ -45,9 +45,17 @@ end
 mason.setup()
 mason_lspconfig.setup({
   ensure_installed = servers,
+  -- stylua ships an `lsp/stylua.lua` config in nvim-lspconfig, so mason would
+  -- otherwise auto-enable `stylua --lsp` as a language server just because the
+  -- formatter is installed. conform.nvim already owns Lua formatting, so exclude
+  -- it to avoid a redundant client.
+  automatic_enable = {
+    exclude = { "stylua" },
+  },
 })
 
-mason_null_ls.setup({
+-- CLI formatters/linters consumed by conform.nvim and nvim-lint.
+mason_tool_installer.setup({
   ensure_installed = {
     "buildifier",
     "shellcheck",
@@ -56,6 +64,4 @@ mason_null_ls.setup({
     "yamlfmt",
     "yapf", -- Disable when ruff is enabled
   },
-  automatic_installation = false,
-  handlers = {},
 })
