@@ -10,11 +10,6 @@ local mason_null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
 if not mason_null_ls_ok then
   return
 end
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-  return
-end
-local lsp_handlers = require("kgreenek.lsp.handlers")
 
 -- These servers will be installed by default.
 local servers = {
@@ -35,10 +30,20 @@ local servers = {
   "yamlls",
 }
 
+-- Apply per-server config overrides from lua/kgreenek/lsp/settings/<server>.lua.
+-- These merge on top of the defaults shipped by nvim-lspconfig and the global
+-- capabilities set in handlers.lua. mason-lspconfig then auto-enables the
+-- installed servers (automatic_enable defaults to true), which reads this config.
+for _, server in ipairs(servers) do
+  local has_custom_opts, server_custom_opts = pcall(require, "kgreenek.lsp.settings." .. server)
+  if has_custom_opts then
+    vim.lsp.config(server, server_custom_opts)
+  end
+end
+
 mason.setup()
 mason_lspconfig.setup({
   ensure_installed = servers,
-  automatic_installation = true,
 })
 
 mason_null_ls.setup({
@@ -53,17 +58,3 @@ mason_null_ls.setup({
   automatic_installation = false,
   handlers = {},
 })
-
--- Disable for now to avoid duplicate servers running.
--- for _, server in pairs(servers) do
---   local opts = {
---     on_attach = lsp_handlers.on_attach,
---     capabilities = lsp_handlers.capabilities,
---   }
---   server = vim.split(server, "@")[1]
---   local has_custom_opts, server_custom_opts = pcall(require, "kgreenek.lsp.settings." .. server)
---   if has_custom_opts then
---     opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
---   end
---   lspconfig[server].setup(opts)
--- end

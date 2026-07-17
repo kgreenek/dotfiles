@@ -1,7 +1,5 @@
 local M = {}
 
-M.capabilities = require("blink.cmp").get_lsp_capabilities()
-
 M.setup = function()
   local sign_text = {
     [vim.diagnostic.severity.ERROR] = "",
@@ -13,35 +11,35 @@ M.setup = function()
   vim.diagnostic.config({
     virtual_text = false, -- Disable in-line messages (requires pressing leader-l-l to see message).
     signs = {
-      text = sign_text, -- show signs
+      text = sign_text, -- Nerd-font icons in the sign column (default is E/W/I/H letters).
     },
-    update_in_insert = true,
-    underline = true,
     severity_sort = true,
     float = {
-      focusable = true,
-      source = true,
+      source = true, -- Show which LSP/linter produced each diagnostic in the float.
     },
   })
 
-end
+  -- Advertise blink.cmp's completion capabilities to every LSP server. This is
+  -- the Neovim 0.11+ way to set defaults for all servers; mason-lspconfig then
+  -- auto-enables the installed servers on top of this config.
+  vim.lsp.config("*", {
+    capabilities = require("blink.cmp").get_lsp_capabilities(),
+  })
 
-local function lsp_highlight_document(client)
-  local illuminate_status_ok, illuminate = pcall(require, "illuminate")
-  if not illuminate_status_ok then
-    return
-  end
-  illuminate.on_attach(client)
-end
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("kgreenek_lsp_attach", { clear = true }),
+    callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if not client then
+        return
+      end
 
-M.on_attach = function(client, _)
-  if client.name == "ts_ls" then
-    client.server_capabilities.documentFormattingProvider = false
-  end
-  if client.name == "lua_ls" then
-    client.server_capabilities.documentFormattingProvider = false
-  end
-  lsp_highlight_document(client)
+      -- Let none-ls/formatters own formatting for these servers.
+      if client.name == "ts_ls" or client.name == "lua_ls" then
+        client.server_capabilities.documentFormattingProvider = false
+      end
+    end,
+  })
 end
 
 return M
