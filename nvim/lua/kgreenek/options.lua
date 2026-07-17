@@ -45,8 +45,10 @@ vim.opt.hlsearch = true
 
 -- Show a ruler at important columns.
 vim.opt.colorcolumn = "101"
--- Make the ruler orange (goldenrod) instead of the default red.
-vim.cmd([[ highlight ColorColumn ctermbg=136 ]])
+-- Make the ruler orange (goldenrod) instead of the default red. The `bg` (gui)
+-- color is what actually shows under termguicolors; ctermbg is the 256-color
+-- fallback (index 136 == #af8700).
+vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = 136, bg = "#af8700" })
 -- Highlight any trailing whitespace, but only in real file buffers (skip special
 -- buffers like the dashboard, help, etc. which pad lines with trailing spaces).
 vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = "red", bg = "red" })
@@ -91,16 +93,26 @@ vim.opt.sidescrolloff = 8
 -- unfocused or insert mode.
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.cmd([[
-  augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-  augroup END
-]])
+local numbertoggle = vim.api.nvim_create_augroup("numbertoggle", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
+  group = numbertoggle,
+  callback = function()
+    vim.opt.relativenumber = true
+  end,
+})
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
+  group = numbertoggle,
+  callback = function()
+    vim.opt.relativenumber = false
+  end,
+})
 
 -- Close the netrw buffer after opening a file.
 vim.g.netrw_fastbrowse = 0
 
--- Treat ROS launch files as xml.
-vim.cmd([[ autocmd BufNewFile,BufRead *.launch set syntax=xml ]])
+-- Treat ROS launch files as xml (sets the full filetype, not just syntax).
+vim.filetype.add({
+  extension = {
+    launch = "xml",
+  },
+})
