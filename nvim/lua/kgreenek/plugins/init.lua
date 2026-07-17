@@ -2,7 +2,6 @@ return {
   "MunifTanjim/nui.nvim",
   "RRethy/vim-illuminate", -- Illuminate other uses of current word/symbol under cursor
   { "akinsho/bufferline.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
-  "antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
 
   "cstrahan/vim-capnp",
   "nvim-lua/popup.nvim",
