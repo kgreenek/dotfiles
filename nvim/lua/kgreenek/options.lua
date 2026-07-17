@@ -47,11 +47,30 @@ vim.opt.hlsearch = true
 vim.opt.colorcolumn = "101"
 -- Make the ruler orange (goldenrod) instead of the default red.
 vim.cmd([[ highlight ColorColumn ctermbg=136 ]])
--- Highlight any trailing whitespace.
-vim.cmd([[
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  match ExtraWhitespace /\s\+$/
-]])
+-- Highlight any trailing whitespace, but only in real file buffers (skip special
+-- buffers like the dashboard, help, etc. which pad lines with trailing spaces).
+vim.api.nvim_set_hl(0, "ExtraWhitespace", { ctermbg = "red", bg = "red" })
+local function refresh_extra_whitespace_match()
+  -- Clear any existing ExtraWhitespace match in this window first (idempotent).
+  for _, m in ipairs(vim.fn.getmatches()) do
+    if m.group == "ExtraWhitespace" then
+      vim.fn.matchdelete(m.id)
+    end
+  end
+  if vim.bo.buftype == "" then
+    vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])
+  end
+end
+vim.api.nvim_create_autocmd({ "BufWinEnter", "FileType" }, {
+  callback = refresh_extra_whitespace_match,
+})
+-- The snacks dashboard reuses the startup buffer and sets its options under
+-- 'eventignore=all', so the autocmds above never fire for it. Re-run once it
+-- signals it has opened, to clear the (now stale) match from the window.
+vim.api.nvim_create_autocmd("User", {
+  pattern = "SnacksDashboardOpened",
+  callback = refresh_extra_whitespace_match,
+})
 
 -- Save unfo file to persist undo history between sessions.
 vim.opt.undofile = true
