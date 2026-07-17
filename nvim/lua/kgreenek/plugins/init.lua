@@ -11,7 +11,7 @@ return {
 
   -- LSP
   "neovim/nvim-lspconfig",
-  "tamago324/nlsp-settings.nvim", -- For jsonls default schemas
+  "b0o/SchemaStore.nvim", -- JSON/YAML schema catalog for jsonls + yamlls
   "mason-org/mason.nvim",
   {
     "mason-org/mason-lspconfig.nvim",
