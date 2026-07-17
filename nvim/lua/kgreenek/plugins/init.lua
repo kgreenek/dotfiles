@@ -8,7 +8,6 @@ return {
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   "nvim-tree/nvim-web-devicons",
   "echasnovski/mini.nvim",
-  "rbgrouleff/bclose.vim", -- Needed for ranger to work with neovim.
   "tikhomirov/vim-glsl",
   "tpope/vim-fugitive",
   "folke/which-key.nvim",

@@ -35,10 +35,6 @@ keymap("v", ">", ">gv", opts)
 -- highlighted text that was just replaced. Keep the text that was just pasted.
 keymap("v", "p", '"_dP', opts)
 
--- rnvimr keymaps
-keymap("n", "<M-o>", ":RnvimrToggle<CR>", opts)
-keymap("t", "<M-o>", "<C-\\><C-n>:RnvimrToggle<CR>", opts)
-keymap("t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>", opts)
 keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 
 -- illumuniate keymaps
@@ -68,7 +64,7 @@ which_key.add({
   { "<leader>cc", "<cmd>cclose<cr>", desc = "Close quickfix list" },
   { "<leader>co", "<cmd>copen<cr>", desc = "Open quickfix list" },
   { "<leader>f", group = "Files" },
-  { "<leader>fe", "<cmd>RnvimrToggle<cr>", desc = "Explore files" },
+  { "<leader>fe", "<cmd>Yazi<cr>", desc = "Explore files" },
   { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file" },
   { "<leader>fl", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
   { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open recent file" },
