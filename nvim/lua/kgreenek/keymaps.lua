@@ -41,13 +41,6 @@ keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 keymap("n", "<a-n>", '<cmd>lua require("illuminate").next_reference({wrap=true})<cr>', opts)
 keymap("n", "<a-p>", '<cmd>lua require("illuminate").next_reference({reverse=true,wrap=true})<cr>', opts)
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "bzl",
-  callback = function()
-    vim.keymap.set("n", "gd", vim.fn.GoToBazelDefinition, { buffer = true, desc = "Goto Definition" })
-  end,
-})
-
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
   vim.notify("which_key not found in keymaps.lua")

@@ -25,6 +25,7 @@ local servers = {
   "pyright", -- Disable when ruff is enabled
   --"ruff",
   "rust_analyzer",
+  "starpls",
   "taplo",
   "ts_ls",
   "yamlls",

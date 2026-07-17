@@ -31,8 +31,4 @@ return {
       "mason-org/mason.nvim",
     },
   },
-
-  -- bazel
-  "google/vim-maktaba",
-  { "bazelbuild/vim-bazel", dependencies = { "google/vim-maktaba" } },
 }

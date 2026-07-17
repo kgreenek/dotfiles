@@ -1,10 +1,6 @@
 return {
   "saghen/blink.cmp",
   version = "1.*",
-  dependencies = {
-    { "saghen/blink.compat", version = "2.*" },
-    "alexander-born/cmp-bazel",
-  },
   opts = {
     keymap = {
       preset = "none",
@@ -22,14 +18,7 @@ return {
       sources = { "cmdline" },
     },
     sources = {
-      default = { "lsp", "path", "buffer", "bazel" },
-      providers = {
-        bazel = {
-          name = "bazel",
-          module = "blink.compat.source",
-          score_offset = -3,
-        },
-      },
+      default = { "lsp", "path", "buffer" },
     },
     completion = {
       list = {
@@ -49,7 +38,6 @@ return {
               text = function(ctx)
                 local labels = {
                   lsp = "[LSP]",
-                  bazel = "[Bazel]",
                   buffer = "[Buffer]",
                   path = "[Path]",
                   cmdline = "[Cmd]",
