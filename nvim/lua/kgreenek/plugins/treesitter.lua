@@ -71,8 +71,9 @@ return {
   lazy = false, -- main explicitly does not support lazy-loading.
   build = ":TSUpdate",
   config = function()
-    local treesitter = require("nvim-treesitter")
-    treesitter.install(langs)
+    require("nvim-treesitter").setup({
+      ensure_installed = langs,
+    })
 
     -- Enable treesitter features on filetypes that have a parser installed.
     vim.api.nvim_create_autocmd("FileType", {
