@@ -1,12 +1,12 @@
 -- Install plugins. This must come first.
 require("kgreenek.lazy")
 
+-- The colorscheme is applied by the tokyonight plugin spec (priority 1000), so it is already set
+-- by the time these run.
+
 -- Vim config.
-require("kgreenek.colorscheme")
 require("kgreenek.keymaps")
 require("kgreenek.options")
 
--- Plugin config.
--- NOTE: This must be done after the colorscheme is set.
-require("kgreenek.bufferline")
+-- LSP setup (eager).
 require("kgreenek.lsp")
