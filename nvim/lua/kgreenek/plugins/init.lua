@@ -1,6 +1,5 @@
 return {
   "MunifTanjim/nui.nvim",
-  "RRethy/vim-illuminate", -- Illuminate other uses of current word/symbol under cursor
   { "akinsho/bufferline.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
   "cstrahan/vim-capnp",

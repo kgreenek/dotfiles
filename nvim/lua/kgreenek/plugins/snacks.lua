@@ -3,6 +3,9 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    -- Auto-highlight other uses of the symbol under the cursor (LSP-based).
+    -- Navigate with <a-n>/<a-p> (see keymaps.lua).
+    words = { enabled = true },
     dashboard = {
       enabled = true,
       preset = {

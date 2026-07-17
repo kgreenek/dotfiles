@@ -37,9 +37,9 @@ keymap("v", "p", '"_dP', opts)
 
 keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 
--- illumuniate keymaps
-keymap("n", "<a-n>", '<cmd>lua require("illuminate").next_reference({wrap=true})<cr>', opts)
-keymap("n", "<a-p>", '<cmd>lua require("illuminate").next_reference({reverse=true,wrap=true})<cr>', opts)
+-- snacks.words: jump between uses of the symbol under the cursor.
+keymap("n", "<a-n>", '<cmd>lua Snacks.words.jump(1, true)<cr>', opts)
+keymap("n", "<a-p>", '<cmd>lua Snacks.words.jump(-1, true)<cr>', opts)
 
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
